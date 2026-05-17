@@ -6,9 +6,7 @@ import Slide03_WhatWeBuilt from './Slide03_WhatWeBuilt.jsx'
 import Slide_FoundationWhyItMatters from './Slide_FoundationWhyItMatters.jsx'
 import SectionTwo from './SectionTwo.jsx'
 import SlideContext_Relationship from './SlideContext_Relationship.jsx'
-import Slide06_NumbersOpener from './Slide06_NumbersOpener.jsx'
 import Slide_OperatingLeverage from './Slide_OperatingLeverage.jsx'
-import Slide08_RealProduct from './Slide08_RealProduct.jsx'
 import Slide_BusinessScale from './Slide_BusinessScale.jsx'
 import Slide_PrivateAviation from './Slide_PrivateAviation.jsx'
 import Slide_SGAGrowth from './Slide_SGAGrowth.jsx'
@@ -48,17 +46,13 @@ export const slides = [
   { Component: SectionTwo, title: 'The Relationship', tone: 'water' },
   // 8. Known: by name, by preference, by history
   { Component: SlideContext_Relationship, title: 'Known', tone: 'light', lens: 'ocean' },
-  // 9. Repeat: ~50% multi-trip
-  { Component: Slide06_NumbersOpener, title: 'Repeat Behavior', tone: 'light', lens: 'ocean' },
-  // 10. Full-Service: 32 → 48%
-  { Component: Slide_OperatingLeverage, title: 'Full-Service Relationships', tone: 'light', lens: 'ocean' },
-  // 11. Complexity: 3×
-  { Component: Slide08_RealProduct, title: 'Complexity', tone: 'dark' },
-  // 12. Business Scale: $6.9M → $15.6M → $24.8M + $1.1M → $2.45M net income
+  // 9. Full-Service & Complexity: 32 → 48% + 3×
+  { Component: Slide_OperatingLeverage, title: 'Full-Service & Complexity', tone: 'light', lens: 'ocean' },
+  // 10. Business Scale: $24.8M → $34.1M → $41.8M total sales moved
   { Component: Slide_BusinessScale, title: 'Business Scale', tone: 'light', lens: 'ocean' },
   // 13. Private Aviation: $5.7M → $10.9M → $16.7M (still within The Relationship)
   { Component: Slide_PrivateAviation, title: 'Private Aviation', tone: 'light', lens: 'ocean' },
-  // 14. SG&A growth: we put it back in — $1.26M → $2.25M operating spend
+  // 12. SG&A growth: we put it back in — $1.26M → $2.5M operating spend
   { Component: Slide_SGAGrowth, title: 'SG&A Growth', tone: 'light', lens: 'ocean' },
 
   // ===== THE FUTURE =====

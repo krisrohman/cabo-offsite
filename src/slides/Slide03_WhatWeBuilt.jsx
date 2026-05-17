@@ -6,7 +6,8 @@ export default function Slide03_WhatWeBuilt() {
     { name: 'VIP Email', detail: 'Built in-house.' },
     { name: 'BuildTravel', detail: 'Expanded for the team.' },
     { name: 'Monday.com', detail: 'Smarter assignment, using availability and history.' },
-    { name: 'Custom Resource Tool', detail: 'Built for the team.' },
+    { name: 'Flight Check-Ins', detail: 'A new service for clients.' },
+    { name: 'Dream Weaving Program', detail: 'Designers investing in the client experience.' },
   ]
   const people = [
     { name: 'Advisor team', detail: 'A department is formed.' },
