@@ -86,6 +86,6 @@ export const slides = [
   // 25. YA 3 — Interactive design
   { Component: Slide_YA03_Interactive, title: 'YA 03 · Interactive client itineraries', tone: 'light', lens: 'sunset' },
 
-  // 26. Closing: more of the journey
+  // 26. Closing: built for the next phase. together.
   { Component: Slide14_Closing, title: 'Closing', tone: 'dark' },
 ]

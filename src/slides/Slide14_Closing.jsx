@@ -30,7 +30,7 @@ export default function Slide14_Closing() {
             textShadow: '0 4px 28px rgba(0,0,0,0.6)',
           }}
         >
-          More of <em style={{ color: 'var(--gold-bright)', fontStyle: 'italic', fontWeight: 400 }}>the journey.</em>
+          Built for <em style={{ color: 'var(--gold-bright)', fontStyle: 'italic', fontWeight: 400 }}>the next phase.</em>
         </h2>
 
         <div
