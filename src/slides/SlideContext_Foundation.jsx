@@ -1,16 +1,16 @@
 export default function SlideContext_Foundation() {
   const calmSignals = [
-    'A driver who knew the route.',
-    'The corner table, held.',
-    'Wine chilling in the suite.',
+    'The waiter, who knew.',
+    'The private tour, seamless.',
+    'Your wine, already chilling.',
   ]
   const chaos = [
-    'Private jet delayed three hours.',
-    'Customs hold on the inbound.',
-    'Weather diverts approach to Loreto.',
-    'Yacht captain calls in sick.',
-    "Butler doesn't meet expectations.",
-    'Driver schedule conflict at 5am.',
+    'Vendor wired the wrong account.',
+    'Permit re-filed at midnight.',
+    'Driver re-vetted in fifteen minutes.',
+    'Tour operator swapped teams mid-trip.',
+    'Yacht insurance lapsed in transit.',
+    'Concierge handoff missed your notes.',
   ]
   return (
     <div
@@ -139,6 +139,7 @@ export default function SlideContext_Foundation() {
           {chaos.map((line, i) => (
             <div
               key={i}
+              className="chaos-item"
               style={{
                 fontFamily: 'var(--serif)',
                 fontWeight: 500,
