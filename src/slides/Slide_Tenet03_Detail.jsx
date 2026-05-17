@@ -5,7 +5,7 @@ export default function Slide_Tenet03_Detail() {
     <TenetLayout
       index={3}
       title="Detail Orientation"
-      tagline="At this altitude, details matter."
+      tagline="The details of the details are equally important."
       description="The small things are the trip. Confirmed, logged, planned. Nothing missed."
       Graphic={DetailGraphic}
     />
@@ -13,38 +13,73 @@ export default function Slide_Tenet03_Detail() {
 }
 
 function DetailGraphic() {
+  const color = '#B0823F'
+  const items = [
+    { line: 180, checked: true },
+    { line: 150, checked: true },
+    { line: 175, checked: true },
+    { line: 145, checked: true },
+    { line: 165, checked: true },
+    { line: 130, checked: false },
+  ]
   return (
     <svg viewBox="0 0 400 400" style={{ width: '100%', height: '100%' }} aria-hidden="true">
-      <g transform="translate(200, 200)">
-        {/* Concentric squares, getting tighter toward the center */}
-        {[170, 140, 112, 86, 64, 44, 28, 16].map((s, i) => (
-          <rect
-            key={i}
-            x={-s}
-            y={-s}
-            width={s * 2}
-            height={s * 2}
-            fill="none"
-            stroke="#C9A06A"
-            strokeWidth={0.7 + i * 0.1}
-            strokeOpacity={0.18 + i * 0.06}
-          />
-        ))}
-        {/* Crosshairs */}
-        <line x1="-170" x2="170" y1="0" y2="0" stroke="#C9A06A" strokeWidth="0.5" strokeOpacity="0.35" />
-        <line x1="0" x2="0" y1="-170" y2="170" stroke="#C9A06A" strokeWidth="0.5" strokeOpacity="0.35" />
-
-        {/* Tick marks on the crosshairs */}
-        {[-140, -100, -60, 60, 100, 140].map((p) => (
-          <g key={p}>
-            <line x1={p} x2={p} y1="-4" y2="4" stroke="#C9A06A" strokeOpacity="0.5" strokeWidth="0.8" />
-            <line y1={p} y2={p} x1="-4" x2="4" stroke="#C9A06A" strokeOpacity="0.5" strokeWidth="0.8" />
+      {/* Paper backing */}
+      <rect
+        x="78"
+        y="70"
+        width="244"
+        height="260"
+        fill={color}
+        fillOpacity="0.06"
+        stroke={color}
+        strokeWidth="1.1"
+        strokeOpacity="0.45"
+        rx="2"
+      />
+      {/* Header band */}
+      <line x1="100" y1="105" x2="220" y2="105" stroke={color} strokeWidth="1.7" />
+      <line x1="100" y1="118" x2="170" y2="118" stroke={color} strokeWidth="0.7" strokeOpacity="0.5" />
+      {/* Checklist items */}
+      {items.map((it, i) => {
+        const y = 158 + i * 28
+        return (
+          <g key={i}>
+            {/* Checkbox */}
+            <rect
+              x="102"
+              y={y - 9}
+              width="16"
+              height="16"
+              fill="none"
+              stroke={color}
+              strokeWidth="1.3"
+              rx="1"
+            />
+            {/* Checkmark */}
+            {it.checked && (
+              <path
+                d={`M 105 ${y} L 110 ${y + 4} L 117 ${y - 4}`}
+                fill="none"
+                stroke={color}
+                strokeWidth="1.9"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            )}
+            {/* List text line */}
+            <line
+              x1="132"
+              y1={y}
+              x2={132 + it.line}
+              y2={y}
+              stroke={color}
+              strokeWidth="1.2"
+              strokeOpacity={it.checked ? 0.55 : 0.32}
+            />
           </g>
-        ))}
-
-        {/* Tiny precise center dot */}
-        <circle cx="0" cy="0" r="3" fill="#B0823F" />
-      </g>
+        )
+      })}
     </svg>
   )
 }

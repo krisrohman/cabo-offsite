@@ -38,7 +38,7 @@ export default function SectionThree() {
             textShadow: '0 4px 30px rgba(255, 240, 200, 0.4)',
           }}
         >
-          The <em style={{ color: '#FAF3E2', textShadow: '0 2px 18px rgba(80, 50, 20, 0.45)' }}>Future.</em>
+          The <em style={{ color: '#FAF3E2', textShadow: '0 2px 18px rgba(80, 50, 20, 0.45)' }}>Path.</em>
         </h3>
         <p
           className="reveal reveal-3"

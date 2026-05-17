@@ -13,44 +13,76 @@ export default function Slide_Tenet02_Personalization() {
 }
 
 function SignatureGraphic() {
+  const color = '#B0823F'
   return (
     <svg viewBox="0 0 400 400" style={{ width: '100%', height: '100%' }} aria-hidden="true">
-      <g transform="translate(200, 200)">
-        {/* Concentric fingerprint-like ellipses, rotated slightly */}
-        {Array.from({ length: 12 }).map((_, i) => {
-          const r = 28 + i * 12
-          const ry = r * (0.85 + (i % 3) * 0.05)
-          const rot = (i % 2 === 0 ? 1 : -1) * (i * 3)
-          const opacity = Math.max(0.12, 0.55 - i * 0.035)
-          return (
-            <ellipse
-              key={i}
-              cx="0"
-              cy="0"
-              rx={r}
-              ry={ry}
-              fill="none"
-              stroke="#C9A06A"
-              strokeWidth="1.1"
-              strokeOpacity={opacity}
-              transform={`rotate(${rot})`}
-            />
-          )
-        })}
-        {/* Open break in some rings — fingerprint imperfection */}
-        {[60, 100, 140].map((r, i) => (
-          <path
-            key={`break-${i}`}
-            d={`M ${r - 8} ${-r * 0.05} A ${r} ${r * 0.92} 0 0 1 ${r + 6} ${r * 0.4}`}
-            fill="none"
-            stroke="#F8F2E8"
-            strokeWidth="6"
-            opacity="0.5"
-          />
-        ))}
-        {/* Center marker */}
-        <circle cx="0" cy="0" r="4" fill="#B0823F" />
-      </g>
+      {/* Folded place card — back panel tilted up */}
+      <path
+        d="M 100 170 L 122 152 L 298 152 L 276 170 Z"
+        fill={color}
+        fillOpacity="0.1"
+        stroke={color}
+        strokeWidth="1.4"
+        strokeLinejoin="round"
+      />
+      {/* Front panel of the card */}
+      <rect
+        x="100"
+        y="170"
+        width="200"
+        height="120"
+        fill={color}
+        fillOpacity="0.15"
+        stroke={color}
+        strokeWidth="1.7"
+      />
+      {/* Inner border on front */}
+      <rect
+        x="112"
+        y="182"
+        width="176"
+        height="96"
+        fill="none"
+        stroke={color}
+        strokeWidth="0.6"
+        strokeOpacity="0.4"
+      />
+
+      {/* "Welcome," — italic serif */}
+      <text
+        x="200"
+        y="222"
+        textAnchor="middle"
+        style={{
+          fontFamily: "'Cormorant Garamond', serif",
+          fontStyle: 'italic',
+          fontWeight: 500,
+          fontSize: '26px',
+          fill: color,
+        }}
+      >
+        Welcome,
+      </text>
+
+      {/* Handwritten cursive name (two squiggle strokes) */}
+      <path
+        d="M 144 256
+          Q 154 248 164 258
+          Q 175 268 186 256
+          Q 197 244 210 258
+          Q 222 270 234 256
+          Q 246 244 256 258"
+        fill="none"
+        stroke={color}
+        strokeWidth="2.4"
+        strokeLinecap="round"
+      />
+
+      {/* Card shadow under the table */}
+      <line x1="110" y1="295" x2="290" y2="295" stroke={color} strokeWidth="0.8" strokeOpacity="0.25" />
+
+      {/* Table line below */}
+      <line x1="60" y1="320" x2="340" y2="320" stroke={color} strokeWidth="0.8" strokeOpacity="0.4" />
     </svg>
   )
 }

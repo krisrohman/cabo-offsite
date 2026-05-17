@@ -60,9 +60,9 @@ export const slides = [
 
   // ===== THE FUTURE =====
   // 14. Future opener (Sunset)
-  { Component: SectionThree, title: 'The Future', tone: 'horizon' },
-  // 15. The Future content: becoming more involved in the journey itself
-  { Component: SlideContext_WhatsAhead, title: 'The Future Detail', tone: 'light', lens: 'sunset' },
+  { Component: SectionThree, title: 'The Path', tone: 'horizon' },
+  // 15. The Path content: becoming more involved in the journey itself
+  { Component: SlideContext_WhatsAhead, title: 'The Path Detail', tone: 'light', lens: 'sunset' },
   // 16. The FlySmoother Standard: Impeccable / Brilliant / Extraordinary + Known/Cared/Confident
   { Component: Slide_ThePromise, title: 'The FlySmoother Standard', tone: 'light', lens: 'sunset' },
   // 17. The Four Tenets overview

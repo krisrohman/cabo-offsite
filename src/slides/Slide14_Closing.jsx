@@ -26,22 +26,21 @@ export default function Slide14_Closing() {
             letterSpacing: '-0.015em',
             color: 'var(--on-dark)',
             margin: '0 auto',
-            maxWidth: '1000px',
+            maxWidth: '1100px',
             textShadow: '0 4px 28px rgba(0,0,0,0.6)',
           }}
         >
-          Built for <em style={{ color: 'var(--gold-bright)', fontStyle: 'italic', fontWeight: 400 }}>the next phase.</em>
+          Built for <em style={{ color: 'var(--gold-bright)', fontStyle: 'italic', fontWeight: 400 }}>what's next.</em>
         </h2>
-
         <div
           className="reveal reveal-3"
           style={{
-            marginTop: 'clamp(36px, 4.5vh, 56px)',
+            marginTop: 'clamp(28px, 3.5vh, 44px)',
             fontFamily: 'var(--serif)',
             fontStyle: 'italic',
-            fontSize: 'clamp(22px, 1.9vw, 30px)',
-            color: 'rgba(240, 229, 203, 0.9)',
-            lineHeight: 1.45,
+            fontSize: 'clamp(24px, 2.1vw, 34px)',
+            color: 'rgba(240, 229, 203, 0.92)',
+            lineHeight: 1.4,
             textShadow: '0 2px 18px rgba(0,0,0,0.55)',
             letterSpacing: '0.01em',
           }}
@@ -56,7 +55,7 @@ export default function Slide14_Closing() {
           position: 'absolute',
           left: 0,
           right: 0,
-          bottom: 'clamp(40px, 5vh, 64px)',
+          top: 'clamp(40px, 5vh, 64px)',
           padding: '0 var(--slide-pad-x)',
           textAlign: 'center',
           zIndex: 3,

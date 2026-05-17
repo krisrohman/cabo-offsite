@@ -54,8 +54,9 @@ export default function Slide_FourTenets() {
           position: 'relative',
         }}
       >
-        {/* Connecting line behind the dots */}
+        {/* Connecting line behind the dots — grows left to right */}
         <div
+          className="tenet-timeline"
           style={{
             position: 'absolute',
             top: '12px',
@@ -79,6 +80,7 @@ export default function Slide_FourTenets() {
           {tenets.map((t) => (
             <div
               key={t.num}
+              className="tenet-stop"
               style={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -124,19 +126,6 @@ export default function Slide_FourTenets() {
         </div>
       </div>
 
-      <div
-        className="reveal reveal-4"
-        style={{
-          marginTop: 'clamp(56px, 7vh, 88px)',
-          fontFamily: 'var(--serif)',
-          fontStyle: 'italic',
-          fontSize: 'clamp(18px, 1.5vw, 24px)',
-          color: 'var(--ink-soft)',
-          maxWidth: '900px',
-        }}
-      >
-        Four habits that make the standard real, every trip.
-      </div>
     </div>
   )
 }

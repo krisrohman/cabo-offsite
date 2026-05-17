@@ -5,7 +5,7 @@ export default function Slide_YA02_WelcomeWings() {
     <GoalLayout
       index={2}
       total={3}
-      title="Grow Welcome Wings"
+      title="Welcome Wings growth"
       target="$5M"
       targetLabel="business"
       targetHint="Standalone scale, not a side service."

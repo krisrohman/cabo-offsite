@@ -9,7 +9,7 @@ export default function SlideContext_Foundation() {
     'Customs hold on the inbound.',
     'Weather diverts approach to Loreto.',
     'Yacht captain calls in sick.',
-    'Suite double-booked, two nights.',
+    "Butler doesn't meet expectations.",
     'Driver schedule conflict at 5am.',
   ]
   return (

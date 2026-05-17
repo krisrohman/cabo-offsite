@@ -2,7 +2,7 @@ export default function SlideContext_WhatsAhead() {
   const stops = [
     { label: 'Private aviation', Icon: PlaneIcon },
     { label: 'Airport coordination', Icon: TowerIcon },
-    { label: 'Arrival experiences', Icon: PalmIcon },
+    { label: 'WOW experiences', Icon: PartyHatIcon },
     { label: 'Complex itineraries', Icon: MapIcon },
     { label: 'Continuity across the trip', Icon: ThreadIcon },
   ]
@@ -167,18 +167,30 @@ function TowerIcon({ color }) {
   )
 }
 
-function PalmIcon({ color }) {
+function PartyHatIcon({ color }) {
   return (
     <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-      {/* Trunk */}
-      <path d="M 24 42 Q 24.5 30 25 18" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
-      {/* Fronds — symmetric */}
-      <path d="M 25 18 Q 14 14 8 19" stroke={color} strokeWidth="1.5" fill="none" strokeLinecap="round" />
-      <path d="M 25 18 Q 35 14 41 19" stroke={color} strokeWidth="1.5" fill="none" strokeLinecap="round" />
-      <path d="M 25 18 Q 19 8 13 7" stroke={color} strokeWidth="1.5" fill="none" strokeLinecap="round" />
-      <path d="M 25 18 Q 31 8 37 7" stroke={color} strokeWidth="1.5" fill="none" strokeLinecap="round" />
-      {/* Coconut cluster */}
-      <circle cx="25" cy="18" r="1.6" fill={color} />
+      {/* Cone */}
+      <path
+        d="M 24 6 L 38 40 L 10 40 Z"
+        stroke={color}
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+        fill={color}
+        fillOpacity="0.18"
+      />
+      {/* Pom-pom at top */}
+      <circle cx="24" cy="5" r="2.8" fill={color} />
+      {/* Decorative stripe bands */}
+      <line x1="13" y1="33" x2="35" y2="33" stroke={color} strokeWidth="0.9" strokeOpacity="0.65" />
+      <line x1="17" y1="24" x2="31" y2="24" stroke={color} strokeWidth="0.7" strokeOpacity="0.55" />
+      {/* Confetti dots */}
+      <circle cx="4" cy="16" r="1.3" fill={color} opacity="0.7" />
+      <circle cx="44" cy="20" r="1.3" fill={color} opacity="0.7" />
+      <circle cx="3" cy="32" r="1.1" fill={color} opacity="0.55" />
+      <circle cx="45" cy="34" r="1.1" fill={color} opacity="0.55" />
+      {/* Brim line */}
+      <line x1="9" y1="40" x2="39" y2="40" stroke={color} strokeWidth="1.2" />
     </svg>
   )
 }

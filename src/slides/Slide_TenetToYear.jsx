@@ -22,7 +22,7 @@ export default function Slide_TenetToYear() {
           color: 'var(--teal-deep)',
         }}
       >
-        2026 <em style={{ color: 'var(--gold)' }}>H2 goals.</em>
+        Our focus for the <em style={{ color: 'var(--gold)' }}>remainder of the year.</em>
       </h2>
     </div>
   )

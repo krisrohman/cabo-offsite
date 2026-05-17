@@ -12,8 +12,8 @@ export default function Slide02_LensIntro() {
     },
     {
       roman: 'III.',
-      section: 'The Future',
-      change: 'We became part of the trip.',
+      section: 'The Path',
+      change: 'Our horizon expanded.',
     },
   ]
   return (
