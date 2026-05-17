@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FlySmoother · State of the Business · Costa Palmas 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ivory: #F8F2E8;
+    --ivory-deep: #EFE5D2;
+    --paper: #FFFCF6;
+    --ink: #2B1F15;
+    --ink-soft: #5C4435;
+    --ink-mute: #9A8576;
+    --rule: #E5D8C2;
+    --gold: #B86B4A;
+    --gold-soft: #D89476;
+    --dark: #1F1610;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 300;
+    color: var(--ink);
+    background: var(--ivory);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background 0.5s ease;
+  }
+
+  body.dark-mode { background: var(--dark); }
+
+  .serif { font-family: 'Cormorant Garamond', serif; }
+
+  .deck {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7vh 7vw;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.55s ease;
+    background: var(--ivory);
+  }
+
+  .slide.dark { background: var(--dark); color: var(--ivory); }
+
+  .slide.active { opacity: 1; pointer-events: all; }
+
+  .slide-inner {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .slide-inner.center { text-align: center; }
+
+  .eyebrow {
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2.5rem;
+  }
+
+  .slide.dark .eyebrow { color: var(--gold-soft); }
+
+  .display {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  .slide.dark .display { color: var(--ivory); }
+
+  .display em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 300;
+  }
+
+  /* ---------- TITLE (slide 1) ---------- */
+  .title-display {
+    font-size: clamp(2.8rem, 6.2vw, 5.2rem);
+    margin-bottom: 1rem;
+  }
+
+  .title-meta {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 10.5px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- AGENDA (slide 2) ---------- */
+  .lede {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4.2vw, 3.2rem);
+    font-weight: 300;
+    margin-bottom: 3rem;
+  }
+
+  .agenda-list {
+    display: grid;
+    gap: 1.25rem;
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .agenda-item {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 2rem;
+    align-items: baseline;
+    padding-bottom: 1.1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .agenda-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--gold);
+  }
+
+  .agenda-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.25rem, 2.1vw, 1.65rem);
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  /* ---------- SECTION OPENER (3, 6, 9) ---------- */
+  .section-display {
+    font-size: clamp(2.6rem, 6vw, 4.8rem);
+    margin-top: 0.5rem;
+  }
+
+  .sun-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .sun-mark .line {
+    width: 48px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .sun-mark .sun {
+    width: 18px;
+    height: 18px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><g fill='none' stroke='%23B86B4A' stroke-width='1.4' stroke-linecap='round'><circle cx='12' cy='12' r='3.2' fill='%23B86B4A'/><line x1='12' y1='1.5' x2='12' y2='4.5'/><line x1='12' y1='19.5' x2='12' y2='22.5'/><line x1='1.5' y1='12' x2='4.5' y2='12'/><line x1='19.5' y1='12' x2='22.5' y2='12'/><line x1='4.4' y1='4.4' x2='6.5' y2='6.5'/><line x1='17.5' y1='17.5' x2='19.6' y2='19.6'/><line x1='4.4' y1='19.6' x2='6.5' y2='17.5'/><line x1='17.5' y1='6.5' x2='19.6' y2='4.4'/></g></svg>");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  /* ---------- OPERATIONAL LIST (4, 11) ---------- */
+  .slide-head {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .slide-head h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(1.7rem, 3.2vw, 2.5rem);
+    color: var(--ink);
+    line-height: 1.15;
+  }
+
+  .slide-head h3 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .ops-list {
+    display: grid;
+    gap: 0;
+    max-width: 880px;
+    margin: 0 auto;
+    border-top: 1px solid var(--rule);
+  }
+
+  .ops-item {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 2.5rem;
+    align-items: baseline;
+    padding: 1.15rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .ops-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.45rem;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .ops-consequence {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 0.98rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  .ops-item.friction .ops-name {
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  .ops-item .roman {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--gold);
+    font-size: 1.15rem;
+    margin-right: 0.9rem;
+    display: inline-block;
+    width: 1.5rem;
+  }
+
+  /* ---------- TEAM ROSTER (slide 5) ---------- */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem 3rem;
+    max-width: 960px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .team-block {
+    border-top: 1px solid var(--rule);
+    padding-top: 1.25rem;
+  }
+
+  .team-function {
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.85rem;
+  }
+
+  .team-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--ink);
+    line-height: 1.55;
+  }
+
+  .team-name .lead {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  /* ---------- RETENTION (slide 7, climax) ---------- */
+  .climax-eyebrow { margin-bottom: 4rem; }
+
+  .climax-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(7rem, 16vw, 14rem);
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+  }
+
+  .climax-number .of {
+    color: var(--gold);
+    font-style: italic;
+    font-size: 0.38em;
+    margin: 0 0.3em;
+    vertical-align: 0.5em;
+  }
+
+  .climax-sub {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.03em;
+    margin-bottom: 3rem;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .climax-kicker {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+    color: var(--gold);
+  }
+
+  /* ---------- LEDGER (slide 8, 10) ---------- */
+  .ledger {
+    display: grid;
+    gap: 0;
+    max-width: 640px;
+    margin: 0 auto;
+    border-top: 1px solid var(--rule);
+  }
+
+  .ledger-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+  }
+
+  .ledger-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+  }
+
+  .ledger-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.55rem;
+    color: var(--gold);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ledger-kicker {
+    text-align: center;
+    margin-top: 3rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+    color: var(--gold);
+  }
+
+  /* ---------- WELCOMEWINGS (slide 10) ---------- */
+  .ww-couplet {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .ww-couplet h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+    line-height: 1.2;
+    color: var(--ink);
+  }
+
+  .ww-couplet h3 + h3 {
+    color: var(--gold);
+    font-style: italic;
+    margin-top: 0.5rem;
+  }
+
+  /* ---------- HIRES (slide 12) ---------- */
+  .hires-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hire-block {
+    padding: 0 1rem;
+  }
+
+  .hire-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: var(--ink);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .hire-rule {
+    width: 36px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto 1rem;
+  }
+
+  .hire-unlock {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  /* ---------- QUESTION (slide 14, dark) ---------- */
+  .question-mark {
+    margin-bottom: 4rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0.6;
+  }
+
+  .question-mark .line {
+    width: 48px;
+    height: 1px;
+    background: var(--gold-soft);
+  }
+
+  .question {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    color: var(--ivory);
+    line-height: 1.3;
+    max-width: 900px;
+    margin: 0 auto;
+    letter-spacing: 0.005em;
+  }
+
+  .question .accent { color: var(--gold-soft); }
+
+  /* ---------- WEEK (slide 15) ---------- */
+  .week-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .week-day {
+    padding: 1.5rem 1rem 1.25rem;
+    border-top: 1px solid var(--rule);
+    text-align: left;
+  }
+
+  .week-day-name {
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .week-day-date {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .week-day-event {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  /* ---------- NAV/CHROME ---------- */
+  .progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: var(--gold);
+    z-index: 100;
+    transition: width 0.45s ease;
+    width: 0;
+  }
+
+  .counter {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 2rem;
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    color: var(--ink-mute);
+    font-variant-numeric: tabular-nums;
+    z-index: 100;
+    transition: color 0.5s ease;
+  }
+
+  .nav-hint {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 2rem;
+    font-size: 9.5px;
+    letter-spacing: 0.32em;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    z-index: 100;
+    opacity: 0.7;
+    transition: color 0.5s ease;
+  }
+
+  body.dark-mode .counter,
+  body.dark-mode .nav-hint {
+    color: rgba(248, 242, 232, 0.4);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px) {
+    .slide { padding: 6vh 6vw; }
+    .ops-item { grid-template-columns: 1fr; gap: 0.3rem; padding: 1rem 0; }
+    .ops-consequence { padding-left: 0; }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .hires-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .week-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 560px) {
+    .team-grid { grid-template-columns: 1fr; }
+    .week-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- PRINT ---------- */
+  @media print {
+    html, body { overflow: visible; height: auto; }
+    .deck { height: auto; }
+    .slide {
+      position: relative;
+      opacity: 1;
+      pointer-events: all;
+      page-break-after: always;
+      min-height: 100vh;
+    }
+    .progress, .counter, .nav-hint { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="deck">
+
+  <!-- 1 · TITLE -->
+  <section class="slide active" data-slide="1">
+    <div class="slide-inner center">
+      <div class="eyebrow">State of the Business · May 2026</div>
+      <h1 class="display title-display">Where we are.<br><em>Where we're going.</em></h1>
+      <div class="title-meta">FlySmoother · Costa Palmas</div>
+    </div>
+  </section>
+
+  <!-- 2 · AGENDA -->
+  <section class="slide" data-slide="2">
+    <div class="slide-inner center">
+      <div class="eyebrow">Agenda</div>
+      <p class="lede">Four parts.</p>
+      <div class="agenda-list">
+        <div class="agenda-item">
+          <div class="agenda-num">I</div>
+          <div class="agenda-text">The foundation we built.</div>
+        </div>
+        <div class="agenda-item">
+          <div class="agenda-num">II</div>
+          <div class="agenda-text">How it changed the relationship.</div>
+        </div>
+        <div class="agenda-item">
+          <div class="agenda-num">III</div>
+          <div class="agenda-text">What that makes possible.</div>
+        </div>
+        <div class="agenda-item">
+          <div class="agenda-num">IV</div>
+          <div class="agenda-text">The week.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · PART I OPENER -->
+  <section class="slide" data-slide="3">
+    <div class="slide-inner center">
+      <div class="sun-mark">
+        <span class="line"></span>
+        <span class="sun" aria-hidden="true"></span>
+        <span class="line"></span>
+      </div>
+      <div class="eyebrow">Part I</div>
+      <h2 class="display section-display">The foundation <em>we built.</em></h2>
+    </div>
+  </section>
+
+  <!-- 4 · WHAT WE BUILT -->
+  <section class="slide" data-slide="4">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="eyebrow">Part I · What We Built</div>
+        <h3>We changed <em>how the work gets done.</em></h3>
+      </div>
+      <div class="ops-list">
+        <div class="ops-item">
+          <div class="ops-name">Itinerary Ops</div>
+          <div class="ops-consequence">Reconfirmation came off the advisor desk.</div>
+        </div>
+        <div class="ops-item">
+          <div class="ops-name">[Function · 02]</div>
+          <div class="ops-consequence">[What it removed from someone's day.]</div>
+        </div>
+        <div class="ops-item">
+          <div class="ops-name">[Function · 03]</div>
+          <div class="ops-consequence">[What it removed from someone's day.]</div>
+        </div>
+        <div class="ops-item">
+          <div class="ops-name">[Function · 04]</div>
+          <div class="ops-consequence">[What it removed from someone's day.]</div>
+        </div>
+        <div class="ops-item">
+          <div class="ops-name">[Function · 05]</div>
+          <div class="ops-consequence">[What it removed from someone's day.]</div>
+        </div>
+        <div class="ops-item friction">
+          <div class="ops-name">And one we got wrong before we got it right.</div>
+          <div class="ops-consequence">[One short sentence on the thing that took two tries.]</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · THE TEAM -->
+  <section class="slide" data-slide="5">
+    <div class="slide-inner center">
+      <div class="eyebrow">Part I · The Team That Grew With It</div>
+      <p class="lede">Real people. <em style="color: var(--gold); font-style: italic;">Real lanes.</em></p>
+      <div class="team-grid">
+        <div class="team-block">
+          <div class="team-function">Itinerary Operations</div>
+          <div class="team-name"><span class="lead">[Lead]</span><br>[Name]<br>[Name]</div>
+        </div>
+        <div class="team-block">
+          <div class="team-function">[Function]</div>
+          <div class="team-name"><span class="lead">[Lead]</span><br>[Name]<br>[Name]</div>
+        </div>
+        <div class="team-block">
+          <div class="team-function">[Function]</div>
+          <div class="team-name"><span class="lead">[Lead]</span><br>[Name]<br>[Name]</div>
+        </div>
+        <div class="team-block">
+          <div class="team-function">[Function]</div>
+          <div class="team-name"><span class="lead">[Lead]</span><br>[Name]</div>
+        </div>
+        <div class="team-block">
+          <div class="team-function">[Function]</div>
+          <div class="team-name"><span class="lead">[Lead]</span><br>[Name]</div>
+        </div>
+        <div class="team-block">
+          <div class="team-function">[Function]</div>
+          <div class="team-name"><span class="lead">[Lead]</span><br>[Name]</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · PART II OPENER -->
+  <section class="slide" data-slide="6">
+    <div class="slide-inner center">
+      <div class="sun-mark">
+        <span class="line"></span>
+        <span class="sun" aria-hidden="true"></span>
+        <span class="line"></span>
+      </div>
+      <div class="eyebrow">Part II</div>
+      <h2 class="display section-display">How it changed <em>the relationship.</em></h2>
+    </div>
+  </section>
+
+  <!-- 7 · RETENTION (CLIMAX) -->
+  <section class="slide" data-slide="7">
+    <div class="slide-inner center">
+      <div class="eyebrow climax-eyebrow">Part II · Clients Come Back</div>
+      <div class="climax-number">33<span class="of">of</span>60</div>
+      <div class="climax-sub">Design clients from 2025 who have already returned.</div>
+      <div class="climax-kicker">The business compounds.</div>
+    </div>
+  </section>
+
+  <!-- 8 · THE MATH -->
+  <section class="slide" data-slide="8">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="eyebrow">Part II · The Math</div>
+        <h3>Revenue doubled. <em>Costs didn't.</em></h3>
+      </div>
+      <div class="ledger">
+        <div class="ledger-row">
+          <div class="ledger-label">Total revenue</div>
+          <div class="ledger-value">2.0×</div>
+        </div>
+        <div class="ledger-row">
+          <div class="ledger-label">Operating cost</div>
+          <div class="ledger-value">[hold]</div>
+        </div>
+        <div class="ledger-row">
+          <div class="ledger-label">Membership fees</div>
+          <div class="ledger-value">~2×</div>
+        </div>
+        <div class="ledger-row">
+          <div class="ledger-label">Service fees</div>
+          <div class="ledger-value">~2×</div>
+        </div>
+      </div>
+      <p class="ledger-kicker">The team didn't carry more burden to make it happen.</p>
+    </div>
+  </section>
+
+  <!-- 9 · PART III OPENER -->
+  <section class="slide" data-slide="9">
+    <div class="slide-inner center">
+      <div class="sun-mark">
+        <span class="line"></span>
+        <span class="sun" aria-hidden="true"></span>
+        <span class="line"></span>
+      </div>
+      <div class="eyebrow">Part III</div>
+      <h2 class="display section-display">What that <em>makes possible.</em></h2>
+    </div>
+  </section>
+
+  <!-- 10 · WELCOMEWINGS -->
+  <section class="slide" data-slide="10">
+    <div class="slide-inner">
+      <div class="eyebrow" style="text-align: center;">Part III · WelcomeWings</div>
+      <div class="ww-couplet">
+        <h3>We didn't set out to build a brand.</h3>
+        <h3>We set out to close a gap.</h3>
+      </div>
+      <div class="ledger" style="max-width: 540px;">
+        <div class="ledger-row">
+          <div class="ledger-label">Services per month</div>
+          <div class="ledger-value">~200</div>
+        </div>
+        <div class="ledger-row">
+          <div class="ledger-label">Projected 2026 revenue</div>
+          <div class="ledger-value">$1.48M</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 · TECH INVESTMENT -->
+  <section class="slide" data-slide="11">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="eyebrow">Part III · The Tech Investment</div>
+        <h3>Thinking room. <em>For clients.</em></h3>
+      </div>
+      <div class="ops-list" style="max-width: 780px;">
+        <div class="ops-item">
+          <div class="ops-name">BuildTravel</div>
+          <div class="ops-consequence">[What it removes from the advisor's day. One sentence.]</div>
+        </div>
+        <div class="ops-item">
+          <div class="ops-name">Unified data layer</div>
+          <div class="ops-consequence">[What it removes from operations. One sentence.]</div>
+        </div>
+        <div class="ops-item">
+          <div class="ops-name">AI</div>
+          <div class="ops-consequence">[What it gives back, specifically. One sentence.]</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 · THE HIRES -->
+  <section class="slide" data-slide="12">
+    <div class="slide-inner center">
+      <div class="eyebrow">Part III · The Hires</div>
+      <p class="lede">Three roles. <em style="color: var(--gold); font-style: italic;">Funded. Intentional.</em></p>
+      <div class="hires-grid">
+        <div class="hire-block">
+          <div class="hire-role">[Role title]</div>
+          <div class="hire-rule"></div>
+          <div class="hire-unlock">[What this role unlocks.]</div>
+        </div>
+        <div class="hire-block">
+          <div class="hire-role">[Role title]</div>
+          <div class="hire-rule"></div>
+          <div class="hire-unlock">[What this role unlocks.]</div>
+        </div>
+        <div class="hire-block">
+          <div class="hire-role">[Role title]</div>
+          <div class="hire-rule"></div>
+          <div class="hire-unlock">[What this role unlocks.]</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 · THE YEAR AHEAD -->
+  <section class="slide" data-slide="13">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="eyebrow">Part III · The Year Ahead</div>
+        <h3>Five commitments.</h3>
+      </div>
+      <div class="ops-list" style="max-width: 820px;">
+        <div class="ops-item">
+          <div class="ops-name"><span class="roman">I</span>BuildTravel live</div>
+          <div class="ops-consequence">[What goes live, and what it changes for the team.]</div>
+        </div>
+        <div class="ops-item">
+          <div class="ops-name"><span class="roman">II</span>Repeat becomes the rule</div>
+          <div class="ops-consequence">[The retention bar we hold ourselves to.]</div>
+        </div>
+        <div class="ops-item">
+          <div class="ops-name"><span class="roman">III</span>[Goal three]</div>
+          <div class="ops-consequence">[Consequence in one short sentence.]</div>
+        </div>
+        <div class="ops-item">
+          <div class="ops-name"><span class="roman">IV</span>[Goal four]</div>
+          <div class="ops-consequence">[Consequence in one short sentence.]</div>
+        </div>
+        <div class="ops-item">
+          <div class="ops-name"><span class="roman">V</span>[Goal five]</div>
+          <div class="ops-consequence">[Consequence in one short sentence.]</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 · THE QUESTION (close climax) -->
+  <section class="slide dark" data-slide="14">
+    <div class="slide-inner center">
+      <div class="question-mark">
+        <span class="line"></span>
+      </div>
+      <p class="question">What would make this year <span class="accent">worth looking back on?</span></p>
+    </div>
+  </section>
+
+  <!-- 15 · THE WEEK -->
+  <section class="slide" data-slide="15">
+    <div class="slide-inner">
+      <div class="slide-head">
+        <div class="eyebrow">The Week</div>
+        <h3>Costa Palmas. <em>Five days.</em></h3>
+      </div>
+      <div class="week-grid">
+        <div class="week-day">
+          <div class="week-day-name">Sunday</div>
+          <div class="week-day-date">May 17</div>
+          <div class="week-day-event">Arrivals.</div>
+        </div>
+        <div class="week-day">
+          <div class="week-day-name">Monday</div>
+          <div class="week-day-date">May 18</div>
+          <div class="week-day-event">State of the business. Work blocks.</div>
+        </div>
+        <div class="week-day">
+          <div class="week-day-name">Tuesday</div>
+          <div class="week-day-date">May 19</div>
+          <div class="week-day-event">Unreasonable Hospitality. DMCs. Dinner at Limón.</div>
+        </div>
+        <div class="week-day">
+          <div class="week-day-name">Wednesday</div>
+          <div class="week-day-date">May 20</div>
+          <div class="week-day-event">AI workshop, two parts.</div>
+        </div>
+        <div class="week-day">
+          <div class="week-day-name">Thursday</div>
+          <div class="week-day-date">May 21</div>
+          <div class="week-day-event">Departures.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div class="progress" id="progress"></div>
+<div class="counter" id="counter">01 / 15</div>
+<div class="nav-hint">← → to navigate</div>
+
+<script>
+  (function () {
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const progress = document.getElementById('progress');
+    const counter = document.getElementById('counter');
+    const total = slides.length;
+    let current = 0;
+
+    function go(index) {
+      if (index < 0 || index >= total) return;
+      slides[current].classList.remove('active');
+      current = index;
+      slides[current].classList.add('active');
+      progress.style.width = ((current + 1) / total) * 100 + '%';
+      counter.textContent =
+        String(current + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+      document.body.classList.toggle('dark-mode', slides[current].classList.contains('dark'));
+      try {
+        history.replaceState(null, '', '#' + (current + 1));
+      } catch (_) {}
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (['ArrowRight', ' ', 'PageDown'].includes(e.key)) {
+        e.preventDefault();
+        go(current + 1);
+      } else if (['ArrowLeft', 'PageUp'].includes(e.key)) {
+        e.preventDefault();
+        go(current - 1);
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        go(0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        go(total - 1);
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      const w = window.innerWidth;
+      if (e.clientX > w * 0.6) go(current + 1);
+      else if (e.clientX < w * 0.4) go(current - 1);
+    });
+
+    // Touch swipe
+    let touchStartX = null;
+    document.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+    });
+    document.addEventListener('touchend', (e) => {
+      if (touchStartX === null) return;
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) {
+        if (dx < 0) go(current + 1);
+        else go(current - 1);
+      }
+      touchStartX = null;
+    });
+
+    // Init from hash
+    const hashNum = parseInt((location.hash || '').replace('#', ''), 10);
+    if (hashNum >= 1 && hashNum <= total) {
+      slides[0].classList.remove('active');
+      go(hashNum - 1);
+    } else {
+      progress.style.width = (1 / total) * 100 + '%';
+    }
+  })();
+</script>
+
+</body>
+</html>

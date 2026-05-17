@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FlySmoother Team Offsite · Costa Palmas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ivory: #F8F2E8;
+    --ivory-deep: #EFE5D2;
+    --paper: #FFFCF6;
+    --ink: #2B1F15;
+    --ink-soft: #5C4435;
+    --ink-mute: #9A8576;
+    --rule: #E5D8C2;
+    --gold: #B86B4A;
+    --gold-soft: #D89476;
+    --sea: #4F7A8C;
+    --sea-mist: #C9D8DE;
+    --terra: #9A4530;
+    --bougainvillea: #B7445E;
+    --agave: #7A8E5A;
+    --talavera: #2E5F87;
+    --talavera-deep: #1B3D5A;
+    --shadow: 0 1px 2px rgba(43, 31, 21, 0.05), 0 12px 40px rgba(43, 31, 21, 0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink);
+    background: var(--ivory);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .serif { font-family: 'Cormorant Garamond', 'Garamond', serif; font-weight: 400; }
+
+  /* ---------- HERO (text-only) ---------- */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ivory);
+    padding: 10vh 6vw;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .hero::before, .hero::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.4;
+  }
+  .hero::before { top: 6vh; max-width: 280px; margin: 0 auto; left: 0; right: 0; }
+  .hero::after  { bottom: 6vh; max-width: 280px; margin: 0 auto; left: 0; right: 0; }
+
+  .hero-text { position: relative; z-index: 2; }
+  .hero-photo { display: none; }
+
+  .hero-inner { position: relative; z-index: 1; width: 100%; max-width: 760px; margin: 0 auto; }
+
+  /* Decorative agave/sun corner marks */
+  .hero-mark-tl, .hero-mark-tr, .hero-mark-bl, .hero-mark-br { display: none; }
+
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2.5rem;
+  }
+
+  .eyebrow .divider {
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: var(--gold-soft);
+    vertical-align: middle;
+    margin: 0 14px 3px;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2.6rem, 6.2vw, 5.4rem);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 2rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+    margin-top: -0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-sub em { font-style: italic; }
+
+  .hero-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .meta-block { text-align: center; }
+
+  .meta-label {
+    font-size: 10.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 0.6rem;
+    text-shadow: 0 1px 2px rgba(248, 242, 232, 0.7);
+  }
+
+  .meta-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    color: var(--ink);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+
+  .scroll-cue {
+    margin-top: 3rem;
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .scroll-cue::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 28px;
+    background: linear-gradient(180deg, var(--gold-soft), transparent);
+    margin: 0.75rem auto 0;
+    animation: drift 2.6s ease-in-out infinite;
+  }
+
+  @keyframes drift {
+    0%, 100% { opacity: 0.4; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(6px); }
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section { padding: 9rem 6vw; }
+
+  .section-head {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 5rem;
+  }
+
+  .section-eyebrow {
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .section-head h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-head p {
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  .ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 0 auto 1.75rem;
+  }
+
+  .ornament .line {
+    height: 1px;
+    width: 60px;
+    background: var(--gold-soft);
+  }
+
+  .ornament .dot {
+    width: 6px;
+    height: 6px;
+    border: 1px solid var(--gold);
+    transform: rotate(45deg);
+  }
+
+  .ornament .sun {
+    width: 22px;
+    height: 22px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><g fill='none' stroke='%23B86B4A' stroke-width='1.4' stroke-linecap='round'><circle cx='12' cy='12' r='3.2' fill='%23B86B4A'/><line x1='12' y1='1.5' x2='12' y2='4.5'/><line x1='12' y1='19.5' x2='12' y2='22.5'/><line x1='1.5' y1='12' x2='4.5' y2='12'/><line x1='19.5' y1='12' x2='22.5' y2='12'/><line x1='4.4' y1='4.4' x2='6.5' y2='6.5'/><line x1='17.5' y1='17.5' x2='19.6' y2='19.6'/><line x1='4.4' y1='19.6' x2='6.5' y2='17.5'/><line x1='17.5' y1='6.5' x2='19.6' y2='4.4'/></g></svg>");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  /* ---------- ARRANGEMENTS ---------- */
+  .arrangements { background: var(--ivory); padding-bottom: 6rem; }
+
+  .arrangements-grid {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 3rem;
+  }
+
+  .arrangement {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+
+  .arrangement-label {
+    font-size: 10.5px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+  }
+
+  .arrangement-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.55rem;
+    color: var(--ink);
+    font-weight: 400;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .arrangement p {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  /* ---------- SCHEDULE ---------- */
+  .schedule { background: linear-gradient(180deg, var(--ivory) 0%, #F6F1E7 100%); }
+
+  .days {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    gap: 2rem;
+  }
+
+  .day-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    box-shadow: var(--shadow);
+    padding: 3rem 3rem 2.5rem;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .day-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1px 2px rgba(31, 37, 48, 0.04), 0 20px 60px rgba(31, 37, 48, 0.08);
+  }
+
+  .day-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-bottom: 1.75rem;
+    margin-bottom: 1.75rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .day-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--ink-mute);
+  }
+
+  .day-title .weekday {
+    color: var(--gold);
+    font-style: italic;
+    margin-right: 0.75rem;
+    font-weight: 500;
+  }
+  .day-title .weekday::after {
+    content: '·';
+    margin-left: 0.75rem;
+    color: var(--gold-soft);
+  }
+
+  .day-date {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  .timeline { display: grid; gap: 0; }
+
+  .slot {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 2rem;
+    align-items: baseline;
+    padding: 1rem 0;
+    border-bottom: 1px solid #F4EEDF;
+    transition: background 0.3s ease;
+  }
+
+  .slot:last-child { border-bottom: none; }
+
+  .slot:hover { background: #FBF8F1; }
+
+  .slot-time {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .slot-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  .slot-note {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    color: var(--ink-mute);
+    margin-top: 0.25rem;
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  .slot.tbd .slot-title { color: var(--ink-mute); font-style: italic; }
+
+  .slot.highlight .slot-title { color: var(--gold); }
+
+  .day-footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed var(--rule);
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  .location-note {
+    text-align: center;
+    margin-top: 4rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- HOTEL REVEAL ---------- */
+  .hotel-reveal {
+    position: relative;
+    background: var(--ivory);
+    padding: 0 0 6rem;
+    overflow: hidden;
+  }
+
+  .hotel-reveal-photo {
+    display: block;
+    height: 82vh;
+    min-height: 600px;
+    max-height: 880px;
+    background-image: url('img/fs-pool.jpg');
+    background-size: cover;
+    background-position: center 55%;
+    filter: saturate(1.08) contrast(1.04);
+    position: relative;
+  }
+
+  .hotel-reveal-photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(43, 31, 21, 0) 55%, rgba(43, 31, 21, 0.3) 100%);
+    pointer-events: none;
+  }
+
+  .hotel-reveal-text {
+    position: relative;
+    z-index: 2;
+    margin: -170px auto 0;
+    max-width: 920px;
+    background: var(--ivory);
+    padding: 3.5rem 4rem 3rem;
+    text-align: center;
+    box-shadow: 0 30px 80px rgba(43, 31, 21, 0.14);
+    border: 1px solid var(--rule);
+  }
+
+  .hotel-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hotel-mark-line {
+    height: 1px;
+    width: 60px;
+    background: var(--gold);
+  }
+
+  .hotel-mark-eyebrow {
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  .hotel-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    line-height: 0.95;
+    margin: 0 0 1.25rem;
+  }
+
+  .hotel-name-pre {
+    display: block;
+    font-style: italic;
+    font-size: clamp(1rem, 1.6vw, 1.35rem);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 0.6rem;
+    font-weight: 400;
+  }
+
+  .hotel-name-main {
+    display: block;
+    font-size: clamp(2.6rem, 6vw, 4.6rem);
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+
+  .hotel-locale {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+  }
+
+  .rooms-stack {
+    max-width: 900px;
+    margin: 4.5rem auto 0;
+    padding: 0 2rem;
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .room-card {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    box-shadow: var(--shadow);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    min-height: 240px;
+    overflow: hidden;
+  }
+
+  .room-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1px 2px rgba(43, 31, 21, 0.06), 0 24px 70px rgba(43, 31, 21, 0.1);
+  }
+
+  .room-card-side {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    color: var(--ivory);
+    padding: 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .room-card--villa .room-card-side {
+    background-image: url('img/fs-villa.jpg');
+  }
+
+  .room-card--hotel .room-card-side {
+    background-image: url('img/fs-room.jpg');
+  }
+
+  .room-card-side::after { display: none; }
+
+  .room-card-label {
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #FBF7EF;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+  }
+
+  .room-card-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 2.6rem;
+    line-height: 1;
+    color: #FBF7EF;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+  }
+
+  .room-card-body {
+    padding: 2rem 2.5rem;
+  }
+
+  .room-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(1.5rem, 2.4vw, 1.95rem);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    color: var(--ink);
+  }
+
+  .room-card-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .room-card-roster {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.03em;
+  }
+
+  .room-card-note {
+    color: var(--ink-soft);
+    font-size: 0.94rem;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 760px) {
+    .hotel-reveal-photo { height: 56vh; min-height: 380px; }
+    .hotel-reveal-text { margin: -100px 1.5rem 0; padding: 2.5rem 1.5rem; }
+    .hotel-mark-eyebrow { font-size: 9.5px; letter-spacing: 0.28em; white-space: normal; }
+    .hotel-name-main { font-size: clamp(2rem, 8vw, 3.4rem); }
+    .room-card { grid-template-columns: 1fr; }
+    .room-card-side { flex-direction: row; padding: 1.25rem 1.5rem; }
+    .room-card-number { font-size: 2rem; }
+    .room-card-body { padding: 1.5rem; }
+  }
+
+  /* ---------- MEETINGS ---------- */
+  .meetings {
+    background: var(--ivory-deep);
+    padding: 6rem 6vw;
+    text-align: center;
+    position: relative;
+  }
+
+  .meetings::before { display: none; }
+  .meetings::after { display: none; }
+
+  .meetings-inner { max-width: 720px; margin: 0 auto; }
+
+  .meetings-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(1.8rem, 3.4vw, 2.8rem);
+    line-height: 1.2;
+    margin: 1rem 0 1.25rem;
+  }
+
+  .meetings-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .meetings-note {
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .meetings-remote {
+    margin: 1.25rem auto 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    color: var(--gold);
+    letter-spacing: 0.02em;
+  }
+
+  /* ---------- PAPEL PICADO BANNER ---------- */
+  .papel-picado {
+    background: var(--ivory);
+    padding: 0;
+    line-height: 0;
+    overflow: hidden;
+  }
+  .papel-picado svg { display: block; width: 100%; height: 90px; }
+  @media (max-width: 760px) { .papel-picado svg { height: 70px; } }
+
+  /* ---------- PHOTO BAND ---------- */
+  .photo-band {
+    height: 60vh;
+    min-height: 460px;
+    max-height: 700px;
+    background-image:
+      linear-gradient(180deg, rgba(248, 242, 232, 0.2), rgba(248, 242, 232, 0) 14%, rgba(248, 242, 232, 0) 60%, rgba(20, 14, 8, 0.85) 100%),
+      url('img/fs-bar.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: saturate(1.08);
+    position: relative;
+  }
+
+  .photo-band::after {
+    content: 'Limón · Four Seasons Resort Costa Palmas';
+    position: absolute;
+    bottom: 1.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: #FBF7EF;
+    letter-spacing: 0.06em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 0 18px rgba(0, 0, 0, 0.6);
+    white-space: nowrap;
+  }
+
+  /* ---------- ETIQUETTE ---------- */
+  .etiquette { background: var(--ivory); }
+
+  .guidelines {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3.5rem 4rem;
+  }
+  @media (max-width: 720px) {
+    .guidelines { grid-template-columns: 1fr; }
+  }
+
+  .guideline {
+    position: relative;
+    padding-left: 0;
+  }
+
+  .guideline::before { display: none; }
+
+  .guideline h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.005em;
+  }
+
+  .guideline ul { list-style: none; }
+
+  .guideline li {
+    position: relative;
+    padding-left: 1.25rem;
+    margin-bottom: 0.85rem;
+    color: var(--ink-soft);
+    font-size: 0.96rem;
+    line-height: 1.7;
+  }
+
+  .guideline li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    top: -0.1rem;
+    color: var(--gold);
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  .guideline li strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* ---------- CLOSING ---------- */
+  .closing {
+    background: #2A2118;
+    text-align: center;
+    padding: 10rem 6vw 9rem;
+    position: relative;
+    overflow: hidden;
+    color: #F4EFE6;
+  }
+
+  .closing::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('img/fs-resort.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 1;
+    filter: saturate(1.08) contrast(1.05);
+    pointer-events: none;
+  }
+
+  .closing::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(20, 14, 8, 0.25) 0%, rgba(20, 14, 8, 0.05) 30%, rgba(20, 14, 8, 0.05) 70%, rgba(20, 14, 8, 0.4) 100%);
+    pointer-events: none;
+  }
+
+  .closing-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    margin: 0 auto;
+    background: rgba(248, 242, 232, 0.96);
+    padding: 3.5rem 3rem 3rem;
+    border: 1px solid rgba(184, 107, 74, 0.4);
+    box-shadow: 0 30px 80px rgba(20, 14, 8, 0.25);
+  }
+
+  .closing blockquote { color: var(--ink) !important; text-shadow: none !important; }
+  .closing blockquote .accent { color: var(--gold) !important; }
+  .closing-sub { color: var(--ink-soft) !important; text-shadow: none !important; }
+  .closing-meta { color: var(--ink-mute) !important; }
+  .closing .ornament .line { background: var(--gold) !important; }
+  .closing .ornament .line { background: rgba(201, 180, 142, 0.6); }
+  .closing .ornament .dot { border-color: var(--gold-soft); }
+
+  .closing-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+
+  .closing blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+    line-height: 1.4;
+    color: var(--ink);
+    margin-bottom: 2.5rem;
+  }
+
+  .closing blockquote .accent { color: var(--gold); font-style: italic; }
+
+  .closing-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+    margin-bottom: 2.5rem;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .closing-meta {
+    font-size: 10.5px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    text-align: center;
+    padding: 3rem 6vw;
+    border-top: 1px solid var(--rule);
+    background: var(--ivory);
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px) {
+    .hero {
+      grid-template-columns: 1fr;
+      grid-template-rows: 42vh 1fr;
+      min-height: auto;
+    }
+    .hero-photo { min-height: 42vh; }
+    .hero-text { padding: 6vh 6vw 8vh; }
+    .hero-photo::after { display: none; }
+  }
+
+  @media (max-width: 760px) {
+    section { padding: 6rem 6vw; }
+    .day-card { padding: 2rem 1.5rem; }
+    .slot { grid-template-columns: 100px 1fr; gap: 1rem; }
+    .slot-time { font-size: 10px; letter-spacing: 0.14em; }
+    .slot-title { font-size: 1.1rem; }
+    .hero-meta { gap: 1.5rem; }
+    .meta-block { min-width: 130px; }
+    .guidelines { gap: 3rem; }
+    .day-title { font-size: 1.6rem; }
+  }
+
+  @media (max-width: 480px) {
+    .slot { grid-template-columns: 1fr; gap: 0.25rem; }
+    .slot-time { margin-bottom: 0.15rem; }
+  }
+
+  /* ---------- PRINT ---------- */
+  @media print {
+    body { background: white; color: #000; }
+    .hero, .closing { min-height: auto; padding: 2rem; }
+    .scroll-cue { display: none; }
+    section { padding: 2rem; page-break-inside: avoid; }
+    .day-card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <span class="hero-mark-tl" aria-hidden="true"></span>
+  <span class="hero-mark-tr" aria-hidden="true"></span>
+  <span class="hero-mark-bl" aria-hidden="true"></span>
+  <span class="hero-mark-br" aria-hidden="true"></span>
+  <div class="hero-inner">
+    <div class="eyebrow">
+      <span class="divider"></span>Bienvenidos · Team Offsite<span class="divider"></span>
+    </div>
+    <h1><em>FlySmoother</em><br>at Costa Palmas</h1>
+    <p class="hero-sub"><em>Bienvenidos a Baja California Sur</em></p>
+    <div class="hero-meta">
+      <div class="meta-block">
+        <div class="meta-label">Destination</div>
+        <div class="meta-value">Four Seasons Costa Palmas</div>
+      </div>
+      <div class="meta-block">
+        <div class="meta-label">Region</div>
+        <div class="meta-value">Cabo, Mexico</div>
+      </div>
+      <div class="meta-block">
+        <div class="meta-label">Dates</div>
+        <div class="meta-value">May 17 to 21, 2026</div>
+      </div>
+    </div>
+    <div class="scroll-cue">El Itinerario ↓</div>
+  </div>
+</header>
+
+<!-- ============ HOTEL REVEAL ============ -->
+<section class="hotel-reveal" id="rooms" aria-label="Four Seasons Resort Costa Palmas">
+  <div class="hotel-reveal-photo" role="img" aria-label="Four Seasons Resort Costa Palmas beachfront pool"></div>
+  <div class="hotel-reveal-text">
+    <div class="hotel-mark">
+      <span class="hotel-mark-line"></span>
+      <span class="hotel-mark-eyebrow">Las Habitaciones · Where We're Staying</span>
+      <span class="hotel-mark-line"></span>
+    </div>
+    <h2 class="hotel-name">
+      <span class="hotel-name-pre">Four Seasons Resort</span>
+      <span class="hotel-name-main">Costa Palmas</span>
+    </h2>
+    <p class="hotel-locale">East Cape · Sea of Cortez · Baja California Sur</p>
+  </div>
+
+  <div class="rooms-stack">
+    <article class="room-card room-card--villa">
+      <div class="room-card-side" aria-hidden="true"></div>
+      <div class="room-card-body">
+        <h3 class="room-card-title">Oasis <em>Five Bedroom</em> Pool Villa</h3>
+        <p class="room-card-roster">Sandra · Steven · Katie L · Anna Kate · Annie</p>
+        <p class="room-card-note">Five bedrooms, private pool, ocean views. A short golf cart or bike ride to the resort.</p>
+      </div>
+    </article>
+
+    <article class="room-card room-card--hotel">
+      <div class="room-card-side" aria-hidden="true"></div>
+      <div class="room-card-body">
+        <h3 class="room-card-title"><em>Ocean View</em> Rooms</h3>
+        <p class="room-card-roster">Kris · Jonathan</p>
+        <p class="room-card-note">Separate ocean view rooms at the resort.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ DAILY MEETINGS ============ -->
+<section class="meetings" id="meetings">
+  <div class="meetings-inner">
+    <div class="section-eyebrow">La Logística · How We'll Meet</div>
+    <h2 class="meetings-title">At the <em>Villa</em>.</h2>
+    <p class="meetings-note">All sessions in the villa living room. We will arrange food and beverages as needed.</p>
+    <p class="meetings-remote"><em>Katie &amp; Emily joining sessions remotely via Meeting Owl.</em></p>
+  </div>
+</section>
+
+<!-- ============ SCHEDULE ============ -->
+<section class="schedule" id="schedule">
+  <div class="section-head">
+    <div class="section-eyebrow">El Itinerario · The Itinerary</div>
+    <h2>Cuatro días. Mornings together, late afternoons free.</h2>
+    <div class="ornament">
+      <span class="line"></span>
+      <span class="sun" aria-hidden="true"></span>
+      <span class="line"></span>
+    </div>
+    <p>Mornings for connection and craft. Afternoons for rest, reflection, and the Sea of Cortez. Every session at the villa.</p>
+  </div>
+
+  <div class="days">
+
+    <!-- SUNDAY -->
+    <article class="day-card">
+      <header class="day-header">
+        <h3 class="day-title"><span class="weekday">Domingo</span>Sunday</h3>
+        <div class="day-date">May 17, 2026 · La Llegada</div>
+      </header>
+      <div class="timeline">
+        <div class="slot highlight">
+          <div class="slot-time">Throughout</div>
+          <div class="slot-title">Arrivals at Costa Palmas
+            <span class="slot-note">Settle into the villa and hotel rooms</span>
+          </div>
+        </div>
+        <div class="slot">
+          <div class="slot-time">Evening</div>
+          <div class="slot-title">Open evening</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- MONDAY -->
+    <article class="day-card">
+      <header class="day-header">
+        <h3 class="day-title"><span class="weekday">Lunes</span>Monday</h3>
+        <div class="day-date">May 18, 2026 · Día Uno</div>
+      </header>
+      <div class="timeline">
+        <div class="slot highlight">
+          <div class="slot-time">7:30 – 9:30</div>
+          <div class="slot-title">Overview &amp; Announcements
+            <span class="slot-note">Trip purpose, updates, and words from Jonathan</span>
+          </div>
+        </div>
+        <div class="slot">
+          <div class="slot-time">9:30 – 10:30</div>
+          <div class="slot-title">Work Block</div>
+        </div>
+        <div class="slot highlight">
+          <div class="slot-time">10:30 – 12:00</div>
+          <div class="slot-title">State of the Business
+            <span class="slot-note">The Maturation of FlySmoother</span>
+          </div>
+        </div>
+        <div class="slot">
+          <div class="slot-time">12:00 – 1:00</div>
+          <div class="slot-title">Lunch</div>
+        </div>
+        <div class="slot">
+          <div class="slot-time">1:00 – 2:00</div>
+          <div class="slot-title">Work Block</div>
+        </div>
+        <div class="slot tbd">
+          <div class="slot-time">2:00 – 3:00</div>
+          <div class="slot-title">To be announced</div>
+        </div>
+        <div class="slot">
+          <div class="slot-time">3:00 onward</div>
+          <div class="slot-title">Free time</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- TUESDAY -->
+    <article class="day-card">
+      <header class="day-header">
+        <h3 class="day-title"><span class="weekday">Martes</span>Tuesday</h3>
+        <div class="day-date">May 19, 2026 · Día Dos</div>
+      </header>
+      <div class="timeline">
+        <div class="slot">
+          <div class="slot-time">7:30 – 9:30</div>
+          <div class="slot-title">Team Huddle</div>
+        </div>
+        <div class="slot">
+          <div class="slot-time">9:30 – 10:30</div>
+          <div class="slot-title">Work Block</div>
+        </div>
+        <div class="slot highlight">
+          <div class="slot-time">10:30 – 12:00</div>
+          <div class="slot-title">Behind the Email
+            <span class="slot-note">With the Four Seasons concierge team</span>
+          </div>
+        </div>
+        <div class="slot">
+          <div class="slot-time">12:00 – 1:00</div>
+          <div class="slot-title">Lunch</div>
+        </div>
+        <div class="slot">
+          <div class="slot-time">1:00 – 2:00</div>
+          <div class="slot-title">Work Block</div>
+        </div>
+        <div class="slot highlight">
+          <div class="slot-time">2:00 – 3:00</div>
+          <div class="slot-title">Working with DMCs
+            <span class="slot-note">Destination, budget, and who decides to use a DMC on a trip</span>
+          </div>
+        </div>
+        <div class="slot">
+          <div class="slot-time">3:00 – 6:45</div>
+          <div class="slot-title">Free time</div>
+        </div>
+        <div class="slot highlight">
+          <div class="slot-time">6:45 PM</div>
+          <div class="slot-title">Team Dinner at Limón
+            <span class="slot-note">Hosted by Four Seasons</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- WEDNESDAY -->
+    <article class="day-card">
+      <header class="day-header">
+        <h3 class="day-title"><span class="weekday">Miércoles</span>Wednesday</h3>
+        <div class="day-date">May 20, 2026 · Día Tres</div>
+      </header>
+      <div class="timeline">
+        <div class="slot">
+          <div class="slot-time">7:30 – 9:30</div>
+          <div class="slot-title">Team Huddle</div>
+        </div>
+        <div class="slot">
+          <div class="slot-time">9:30 – 10:30</div>
+          <div class="slot-title">Work Block</div>
+        </div>
+        <div class="slot highlight">
+          <div class="slot-time">10:30 – 12:00</div>
+          <div class="slot-title">AI Workshop</div>
+        </div>
+        <div class="slot">
+          <div class="slot-time">12:00 – 1:00</div>
+          <div class="slot-title">Lunch</div>
+        </div>
+        <div class="slot">
+          <div class="slot-time">1:00 – 2:00</div>
+          <div class="slot-title">Work Block</div>
+        </div>
+        <div class="slot highlight">
+          <div class="slot-time">2:00 – 3:00</div>
+          <div class="slot-title">WOW Experiences
+            <span class="slot-note">With David Mendez, Resort Manager</span>
+          </div>
+        </div>
+        <div class="slot">
+          <div class="slot-time">3:00 onward</div>
+          <div class="slot-title">Free time</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- THURSDAY -->
+    <article class="day-card">
+      <header class="day-header">
+        <h3 class="day-title"><span class="weekday">Jueves</span>Thursday</h3>
+        <div class="day-date">May 21, 2026 · Día Cuatro</div>
+      </header>
+      <div class="timeline">
+        <div class="slot">
+          <div class="slot-time">7:00 – 8:30</div>
+          <div class="slot-title">Breakfast &amp; goodbyes</div>
+        </div>
+        <div class="slot highlight">
+          <div class="slot-time">8:30 AM</div>
+          <div class="slot-title">Departure · Wave 1
+            <span class="slot-note">Annie · AS 1401 · 11:20 AM<br>Sandra · AA 2647 · 12:08 PM<br>Anna Kate · DL 1848 · 12:35 PM</span>
+          </div>
+        </div>
+        <div class="slot highlight">
+          <div class="slot-time">10:00 AM</div>
+          <div class="slot-title">Departure · Wave 2
+            <span class="slot-note">Jonathan · AA 2636 · 12:48 PM<br>Kris · UA 1931 · 1:02 PM<br>Steven · UA 294 / UA 2152 · 1:17 PM<br>Katelyn · UA 2152 · 1:17 PM</span>
+          </div>
+        </div>
+        <div class="slot">
+          <div class="slot-time">Evening</div>
+          <div class="slot-title">Flights home</div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <p class="location-note">Todas las sesiones en la villa. All sessions at the villa.</p>
+</section>
+
+<!-- ============ PHOTO BAND ============ -->
+<div class="photo-band" role="img" aria-label="Cabo San Lucas coastline"></div>
+
+<!-- ============ ETIQUETTE ============ -->
+<section class="etiquette" id="etiquette">
+  <div class="section-head">
+    <div class="section-eyebrow">La Etiqueta · Expectations &amp; Etiquette</div>
+    <h2>How we'll show up, together.</h2>
+    <div class="ornament">
+      <span class="line"></span>
+      <span class="sun" aria-hidden="true"></span>
+      <span class="line"></span>
+    </div>
+    <p>The practical notes. How to dress, what's covered, and how we'll spend the afternoons.</p>
+  </div>
+
+  <div class="guidelines">
+
+    <div class="guideline">
+      <h3>Professional Conduct</h3>
+      <ul>
+        <li>Hold a professional demeanor in shared spaces and during all sessions.</li>
+        <li>Be respectful of colleagues' time and space.</li>
+        <li>Engage thoughtfully in discussions and workshops.</li>
+      </ul>
+    </div>
+
+    <div class="guideline">
+      <h3>Dress Code</h3>
+      <ul>
+        <li><strong>Daytime.</strong> The casual side of business casual, resort appropriate.</li>
+        <li><strong>Meals &amp; evening.</strong> Smart casual or business casual. No athletic wear.</li>
+        <li><strong>Beach &amp; pool.</strong> Appropriate resort attire.</li>
+      </ul>
+    </div>
+
+    <div class="guideline">
+      <h3>Per Diem</h3>
+      <ul>
+        <li><strong>$350 per person</strong> to put towards an activity of your choice.</li>
+        <li><strong>Breakfast, lunch, and dinner</strong> are covered, charged to your room.</li>
+        <li>Anything beyond reasonable should go on your credit card.</li>
+      </ul>
+    </div>
+
+    <div class="guideline">
+      <h3>Free Time</h3>
+      <ul>
+        <li>Afternoons from 3 PM onward are yours. Relax at the beach, use the spa, explore, or rest.</li>
+        <li>Optional group activities may be planned. Participation is welcome but not required.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ CLOSING ============ -->
+<section class="closing">
+  <div class="closing-inner">
+    <div class="ornament">
+      <span class="line"></span>
+      <span class="sun" aria-hidden="true"></span>
+      <span class="line"></span>
+    </div>
+    <blockquote>
+      <span class="accent">Bienvenidos</span> a Costa Palmas.
+    </blockquote>
+    <p class="closing-sub">Where the Sierra de la Laguna meets the Sea of Cortez. Cuatro días. Salud.</p>
+    <div class="closing-meta">Baja California Sur · Mayo 2026</div>
+  </div>
+</section>
+
+<footer>
+  FlySmoother · Costa Palmas · Mayo 2026
+</footer>
+
+</body>
+</html>
