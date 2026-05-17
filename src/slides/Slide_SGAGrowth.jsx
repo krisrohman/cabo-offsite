@@ -1,8 +1,8 @@
 export default function Slide_SGAGrowth() {
   const spend = [
-    { year: '2024', value: '$1.26M', pct: 56, projected: false },
-    { year: '2025', value: '$1.54M', pct: 68, projected: false },
-    { year: '2026', value: '$2.25M', pct: 100, projected: true, actualPct: 32, actualLabel: '$714K YTD' },
+    { year: '2024', value: '$1.26M', pct: 50, projected: false },
+    { year: '2025', value: '$1.54M', pct: 62, projected: false },
+    { year: '2026', value: '$2.5M', pct: 100, projected: true, actualPct: 29, actualLabel: '$714K YTD' },
   ]
 
   return (
