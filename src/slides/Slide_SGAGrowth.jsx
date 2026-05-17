@@ -1,8 +1,8 @@
-export default function Slide_BusinessScale() {
-  const billable = [
-    { year: '2024', value: '$24.8M', pct: 59, projected: false },
-    { year: '2025', value: '$34.1M', pct: 82, projected: false },
-    { year: '2026', value: '$41.8M', pct: 100, projected: true, actualPct: 35, actualLabel: '$14.6M YTD' },
+export default function Slide_SGAGrowth() {
+  const spend = [
+    { year: '2024', value: '$1.26M', pct: 56, projected: false },
+    { year: '2025', value: '$1.54M', pct: 68, projected: false },
+    { year: '2026', value: '$2.25M', pct: 100, projected: true, actualPct: 32, actualLabel: '$714K YTD' },
   ]
 
   return (
@@ -35,7 +35,7 @@ export default function Slide_BusinessScale() {
             lineHeight: 1.2,
           }}
         >
-          The relationships deepened.
+          We put it back in.
         </div>
         <div
           style={{
@@ -46,7 +46,7 @@ export default function Slide_BusinessScale() {
             lineHeight: 1.2,
           }}
         >
-          The business grew.
+          Capacity for what's next.
         </div>
       </div>
 
@@ -57,9 +57,23 @@ export default function Slide_BusinessScale() {
           paddingTop: 'clamp(24px, 3vh, 36px)',
         }}
       >
-        <BarChart label="Total sales moved" bars={billable} />
+        <BarChart label="Operating spend" bars={spend} />
       </div>
 
+      <div
+        className="reveal reveal-4"
+        style={{
+          marginTop: 'clamp(20px, 2.4vh, 32px)',
+          fontFamily: 'var(--serif)',
+          fontStyle: 'italic',
+          fontSize: 'clamp(16px, 1.3vw, 22px)',
+          color: 'var(--ink-soft)',
+          lineHeight: 1.5,
+          maxWidth: '760px',
+        }}
+      >
+        Salaries, contractors, software — the systems behind the experience.
+      </div>
     </div>
   )
 }
@@ -189,7 +203,6 @@ function SplitBar({ pct, actualPct, actualLabel }) {
         overflow: 'hidden',
       }}
     >
-      {/* Top: projected portion — faded */}
       <div
         style={{
           flex: `${100 - actualPct}`,
@@ -214,7 +227,6 @@ function SplitBar({ pct, actualPct, actualLabel }) {
           projected
         </span>
       </div>
-      {/* Bottom: actual YTD — solid */}
       <div
         style={{
           flex: `${actualPct}`,

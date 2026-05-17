@@ -1,8 +1,8 @@
 export default function Slide_PrivateAviation() {
   const bars = [
-    { year: '2024', value: '$3.4M', pct: 23, projected: false, placeholder: false },
-    { year: '2025', value: '$10.7M', pct: 74, projected: false, placeholder: false },
-    { year: '2026', value: '$14.5M', pct: 100, projected: true, placeholder: false, actualPct: 33, actualLabel: '$4.8M YTD' },
+    { year: '2024', value: '$5.7M', pct: 34, projected: false, placeholder: false },
+    { year: '2025', value: '$10.9M', pct: 65, projected: false, placeholder: false },
+    { year: '2026', value: '$16.7M', pct: 100, projected: true, placeholder: false, actualPct: 29, actualLabel: '$4.8M YTD' },
   ]
   return (
     <div

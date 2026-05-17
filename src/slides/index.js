@@ -11,6 +11,7 @@ import Slide_OperatingLeverage from './Slide_OperatingLeverage.jsx'
 import Slide08_RealProduct from './Slide08_RealProduct.jsx'
 import Slide_BusinessScale from './Slide_BusinessScale.jsx'
 import Slide_PrivateAviation from './Slide_PrivateAviation.jsx'
+import Slide_SGAGrowth from './Slide_SGAGrowth.jsx'
 import SectionThree from './SectionThree.jsx'
 import SlideContext_WhatsAhead from './SlideContext_WhatsAhead.jsx'
 import Slide_ThePromise from './Slide_ThePromise.jsx'
@@ -55,8 +56,10 @@ export const slides = [
   { Component: Slide08_RealProduct, title: 'Complexity', tone: 'dark' },
   // 12. Business Scale: $6.9M → $15.6M → $24.8M + $1.1M → $2.45M net income
   { Component: Slide_BusinessScale, title: 'Business Scale', tone: 'light', lens: 'ocean' },
-  // 13. Private Aviation: $3.4M → $10.7M (still within The Relationship)
+  // 13. Private Aviation: $5.7M → $10.9M → $16.7M (still within The Relationship)
   { Component: Slide_PrivateAviation, title: 'Private Aviation', tone: 'light', lens: 'ocean' },
+  // 14. SG&A growth: we put it back in — $1.26M → $2.25M operating spend
+  { Component: Slide_SGAGrowth, title: 'SG&A Growth', tone: 'light', lens: 'ocean' },
 
   // ===== THE FUTURE =====
   // 14. Future opener (Sunset)
