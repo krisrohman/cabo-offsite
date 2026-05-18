@@ -1,4 +1,4 @@
-export default function TenetLayout({ index, title, tagline, description, Graphic }) {
+export default function TenetLayout({ index, title, tagline, description, Graphic }) {  // eslint-disable-line
   const total = 4
   return (
     <div
@@ -76,14 +76,35 @@ export default function TenetLayout({ index, title, tagline, description, Graphi
             style={{
               fontFamily: 'var(--serif)',
               fontStyle: 'italic',
-              fontSize: 'clamp(22px, 2vw, 32px)',
+              fontSize: 'clamp(20px, 1.8vw, 28px)',
               lineHeight: 1.3,
               color: 'var(--gold)',
-              maxWidth: '520px',
+              marginBottom: 'clamp(24px, 3vh, 36px)',
+              maxWidth: '480px',
               textWrap: 'balance',
             }}
           >
             {tagline}
+          </div>
+          <div
+            style={{
+              width: '40px',
+              height: '1px',
+              background: 'rgba(217, 171, 114, 0.5)',
+              marginBottom: 'clamp(20px, 2.4vh, 28px)',
+            }}
+          />
+          <div
+            className="reveal reveal-4"
+            style={{
+              fontFamily: 'var(--serif)',
+              fontSize: 'clamp(16px, 1.3vw, 21px)',
+              color: 'var(--ink-soft)',
+              lineHeight: 1.55,
+              maxWidth: '500px',
+            }}
+          >
+            {description}
           </div>
         </div>
 
