@@ -5,87 +5,74 @@ export default function SlideContext_Relationship() {
       style={{
         padding: '0 var(--slide-pad-x)',
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center',
         maxWidth: '1400px',
         margin: '0 auto',
         height: '100%',
+        gap: 'clamp(60px, 9vh, 130px)',
       }}
     >
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '1.25fr 1fr',
-          columnGap: 'clamp(48px, 7vw, 120px)',
-          alignItems: 'center',
-          width: '100%',
-        }}
-      >
-        {/* LEFT — the message */}
-        <div>
-          <h2
-            className="display reveal reveal-2"
-            style={{
-              fontFamily: 'var(--serif)',
-              fontWeight: 500,
-              fontSize: 'clamp(48px, 5.2vw, 84px)',
-              lineHeight: 1.0,
-              letterSpacing: '-0.018em',
-              color: 'var(--teal-deep)',
-              marginBottom: 'clamp(18px, 2.2vh, 30px)',
-              textWrap: 'balance',
-            }}
-          >
-            Our clients are{' '}
-            <em style={{ fontStyle: 'italic', color: 'var(--gold)', fontWeight: 500 }}>Known.</em>
-          </h2>
+      {/* TOP — setup */}
+      <div>
+        <h2
+          className="display reveal reveal-2"
+          style={{
+            fontFamily: 'var(--serif)',
+            fontWeight: 500,
+            fontSize: 'clamp(38px, 4.2vw, 64px)',
+            lineHeight: 1.02,
+            letterSpacing: '-0.015em',
+            color: 'var(--teal-deep)',
+            marginBottom: 'clamp(10px, 1.2vh, 18px)',
+            textWrap: 'balance',
+          }}
+        >
+          Our clients are{' '}
+          <em style={{ fontStyle: 'italic', color: 'var(--gold)', fontWeight: 500 }}>Known.</em>
+        </h2>
 
-          <div
-            className="reveal reveal-3"
-            style={{
-              fontFamily: 'var(--serif)',
-              fontStyle: 'italic',
-              fontWeight: 400,
-              fontSize: 'clamp(18px, 1.5vw, 26px)',
-              lineHeight: 1.3,
-              color: 'rgba(184, 130, 80, 0.78)',
-              marginBottom: 'clamp(40px, 5vh, 64px)',
-            }}
-          >
-            By name. By preference. By history.
-          </div>
+        <div
+          className="reveal reveal-3"
+          style={{
+            fontFamily: 'var(--serif)',
+            fontStyle: 'italic',
+            fontWeight: 400,
+            fontSize: 'clamp(17px, 1.45vw, 24px)',
+            lineHeight: 1.3,
+            color: 'rgba(184, 130, 80, 0.78)',
+          }}
+        >
+          By name. By preference. By history.
+        </div>
+      </div>
 
-          <div
-            className="reveal reveal-4"
-            style={{
-              fontFamily: 'var(--serif)',
-              fontStyle: 'italic',
-              fontSize: 'clamp(15px, 1.2vw, 19px)',
-              color: 'var(--ink-mute)',
-              letterSpacing: '0.02em',
-              lineHeight: 1.4,
-              maxWidth: '420px',
-            }}
-          >
-            Trusted with their most precious resource.
-          </div>
+      {/* BOTTOM — hero composition: lead-in + icon + Time */}
+      <div className="reveal reveal-4">
+        <div
+          style={{
+            fontFamily: 'var(--serif)',
+            fontStyle: 'italic',
+            fontSize: 'clamp(18px, 1.55vw, 26px)',
+            color: 'var(--ink-mute)',
+            letterSpacing: '0.02em',
+            marginBottom: 'clamp(20px, 2.4vh, 32px)',
+          }}
+        >
+          Trusted with their most precious resource:
         </div>
 
-        {/* RIGHT — icon + Time */}
         <div
-          className="reveal reveal-4"
           style={{
-            borderLeft: '1px solid rgba(217, 171, 114, 0.4)',
-            paddingLeft: 'clamp(48px, 6vw, 100px)',
             display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            gap: 'clamp(20px, 2.6vh, 36px)',
+            alignItems: 'center',
+            gap: 'clamp(20px, 2.4vw, 44px)',
           }}
         >
           <div
             style={{
-              width: 'clamp(120px, 18vw, 220px)',
+              flexShrink: 0,
+              width: 'clamp(96px, 11vw, 168px)',
               aspectRatio: '5 / 6',
             }}
           >
@@ -96,9 +83,9 @@ export default function SlideContext_Relationship() {
               fontFamily: 'var(--serif)',
               fontStyle: 'italic',
               fontWeight: 500,
-              fontSize: 'clamp(72px, 9vw, 160px)',
-              lineHeight: 0.9,
-              letterSpacing: '-0.025em',
+              fontSize: 'clamp(120px, 15vw, 260px)',
+              lineHeight: 0.88,
+              letterSpacing: '-0.03em',
               color: 'var(--gold)',
             }}
           >
@@ -120,7 +107,6 @@ function PocketWatchIcon({ color }) {
 
       {/* Outer case ring */}
       <circle cx="100" cy="124" r="88" fill="none" stroke={color} strokeWidth="2.5" />
-      {/* Inner face */}
       <circle cx="100" cy="124" r="80" fill={color} fillOpacity="0.07" stroke={color} strokeWidth="0.8" strokeOpacity="0.5" />
 
       {/* Hour markers */}
@@ -148,26 +134,10 @@ function PocketWatchIcon({ color }) {
         )
       })}
 
-      {/* Hour hand — pointing roughly at 10 (classic watch position) */}
-      <line
-        x1="100"
-        y1="124"
-        x2="68"
-        y2="98"
-        stroke={color}
-        strokeWidth="3.5"
-        strokeLinecap="round"
-      />
-      {/* Minute hand — pointing at 2 */}
-      <line
-        x1="100"
-        y1="124"
-        x2="138"
-        y2="84"
-        stroke={color}
-        strokeWidth="2.4"
-        strokeLinecap="round"
-      />
+      {/* Hour hand pointing at 10 */}
+      <line x1="100" y1="124" x2="68" y2="98" stroke={color} strokeWidth="3.5" strokeLinecap="round" />
+      {/* Minute hand pointing at 2 */}
+      <line x1="100" y1="124" x2="138" y2="84" stroke={color} strokeWidth="2.4" strokeLinecap="round" />
 
       {/* Center pin */}
       <circle cx="100" cy="124" r="4.5" fill={color} />
