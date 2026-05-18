@@ -17,7 +17,7 @@ export default function Slide_OperatingLeverage() {
         className="reveal reveal-2"
         style={{
           display: 'grid',
-          gridTemplateColumns: 'auto 1fr',
+          gridTemplateColumns: 'clamp(280px, 32%, 420px) 1fr',
           columnGap: 'clamp(48px, 6vw, 100px)',
           alignItems: 'center',
           maxWidth: '1200px',
@@ -99,7 +99,7 @@ export default function Slide_OperatingLeverage() {
         className="reveal reveal-3"
         style={{
           display: 'grid',
-          gridTemplateColumns: 'auto 1fr',
+          gridTemplateColumns: 'clamp(280px, 32%, 420px) 1fr',
           columnGap: 'clamp(48px, 6vw, 100px)',
           alignItems: 'center',
           maxWidth: '1200px',
@@ -113,7 +113,6 @@ export default function Slide_OperatingLeverage() {
             lineHeight: 0.88,
             letterSpacing: '-0.02em',
             color: 'var(--gold)',
-            minWidth: 'clamp(140px, 14vw, 220px)',
             textAlign: 'left',
           }}
         >
