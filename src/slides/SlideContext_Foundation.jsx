@@ -5,12 +5,12 @@ export default function SlideContext_Foundation() {
     'Your wine, already chilling.',
   ]
   const chaos = [
-    'Vendor wired the wrong account.',
-    'Permit re-filed at midnight.',
-    'Driver re-vetted in fifteen minutes.',
-    'Tour operator swapped teams mid-trip.',
-    'Yacht insurance lapsed in transit.',
-    'Concierge handoff missed your notes.',
+    'Pilot got food poisoning.',
+    'Car broke down on the way to pickup.',
+    'Peanut allergy reconfirmed three times.',
+    'Yacht generator died at sunrise.',
+    'Resort lost the keys to your villa.',
+    'Sommelier ran out of your vintage.',
   ]
   return (
     <div
