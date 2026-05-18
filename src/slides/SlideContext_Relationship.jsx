@@ -10,26 +10,44 @@ export default function SlideContext_Relationship() {
         maxWidth: '1400px',
         margin: '0 auto',
         height: '100%',
-        gap: 'clamp(60px, 9vh, 130px)',
+        gap: 'clamp(56px, 8.5vh, 120px)',
       }}
     >
-      {/* TOP — setup */}
+      {/* ACT 1 — knowing */}
       <div>
+        <div
+          className="reveal"
+          style={{
+            fontFamily: 'var(--sans)',
+            fontSize: 'clamp(10px, 0.85vw, 12px)',
+            fontWeight: 600,
+            letterSpacing: '0.4em',
+            textTransform: 'uppercase',
+            color: 'rgba(184, 130, 80, 0.65)',
+            marginBottom: 'clamp(20px, 2.4vh, 32px)',
+          }}
+        >
+          The relationship is the business.
+        </div>
+
         <h2
           className="display reveal reveal-2"
           style={{
             fontFamily: 'var(--serif)',
             fontWeight: 500,
-            fontSize: 'clamp(38px, 4.2vw, 64px)',
+            fontSize: 'clamp(40px, 4.6vw, 72px)',
             lineHeight: 1.02,
             letterSpacing: '-0.015em',
             color: 'var(--teal-deep)',
-            marginBottom: 'clamp(10px, 1.2vh, 18px)',
+            marginBottom: 'clamp(14px, 1.8vh, 24px)',
             textWrap: 'balance',
+            maxWidth: '1100px',
           }}
         >
-          Our clients are{' '}
-          <em style={{ fontStyle: 'italic', color: 'var(--gold)', fontWeight: 500 }}>Known.</em>
+          We know our clients{' '}
+          <em style={{ fontStyle: 'italic', color: 'var(--gold)', fontWeight: 500 }}>
+            by name, by preference, by history.
+          </em>
         </h2>
 
         <div
@@ -37,17 +55,17 @@ export default function SlideContext_Relationship() {
           style={{
             fontFamily: 'var(--serif)',
             fontStyle: 'italic',
-            fontWeight: 400,
-            fontSize: 'clamp(17px, 1.45vw, 24px)',
-            lineHeight: 1.3,
-            color: 'rgba(184, 130, 80, 0.78)',
+            fontSize: 'clamp(17px, 1.4vw, 24px)',
+            color: 'var(--ink-mute)',
+            lineHeight: 1.4,
+            maxWidth: '760px',
           }}
         >
-          By name. By preference. By history.
+          So they never have to repeat themselves.
         </div>
       </div>
 
-      {/* BOTTOM — hero composition: lead-in + icon + Time */}
+      {/* ACT 2 — the payoff */}
       <div className="reveal reveal-4">
         <div
           style={{
@@ -56,10 +74,11 @@ export default function SlideContext_Relationship() {
             fontSize: 'clamp(18px, 1.55vw, 26px)',
             color: 'var(--ink-mute)',
             letterSpacing: '0.02em',
-            marginBottom: 'clamp(20px, 2.4vh, 32px)',
+            marginBottom: 'clamp(16px, 2vh, 26px)',
+            maxWidth: '760px',
           }}
         >
-          Trusted with their most precious resource:
+          The trust we earn is paid back in their most precious resource:
         </div>
 
         <div
