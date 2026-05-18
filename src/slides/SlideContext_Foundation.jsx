@@ -10,7 +10,7 @@ export default function SlideContext_Foundation() {
     'Peanut allergy reconfirmed three times.',
     'Three restaurants held your table.',
     'Private chef caught the flu day-of.',
-    'Sommelier ran out of your vintage.',
+    'Hot tub repaired before you arrived.',
   ]
   return (
     <div
