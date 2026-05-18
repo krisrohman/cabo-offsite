@@ -37,6 +37,17 @@ export default function App() {
     return () => window.removeEventListener('keydown', onKey)
   }, [next, prev, goTo, total])
 
+  // Lock slide stack to 1600x900 design canvas, scale to fit any viewport
+  useEffect(() => {
+    const setScale = () => {
+      const scale = Math.min(window.innerWidth / 1600, window.innerHeight / 900)
+      document.documentElement.style.setProperty('--slide-scale', scale.toString())
+    }
+    setScale()
+    window.addEventListener('resize', setScale)
+    return () => window.removeEventListener('resize', setScale)
+  }, [])
+
 
   const currentSlide = slides[current]
   const tone = currentSlide?.tone || 'light'
