@@ -1,17 +1,17 @@
 export default function Slide02_LensIntro() {
   const acts = [
     {
-      kicker: 'First,',
+      num: '01',
       section: 'The Foundation',
       change: 'The business became more complex.',
     },
     {
-      kicker: 'Then,',
+      num: '02',
       section: 'The Relationship',
       change: 'The client relationships became deeper.',
     },
     {
-      kicker: 'Now,',
+      num: '03',
       section: 'The Path',
       change: 'Our horizon expanded.',
     },
@@ -66,68 +66,94 @@ export default function Slide02_LensIntro() {
           </em>
         </h1>
 
-        <div
-          className="reveal reveal-2"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            columnGap: 'clamp(48px, 6vw, 100px)',
-            alignItems: 'start',
-          }}
-        >
-          {acts.map((act, i) => (
-            <div
-              key={i}
-              style={{
-                position: 'relative',
-                paddingLeft: 'clamp(22px, 2.4vw, 36px)',
-                borderLeft: '1px solid rgba(217, 171, 114, 0.45)',
-              }}
-            >
-              <div
-                style={{
-                  fontFamily: 'var(--serif)',
-                  fontStyle: 'italic',
-                  fontSize: 'clamp(16px, 1.35vw, 22px)',
-                  color: 'rgba(217, 171, 114, 0.78)',
-                  marginBottom: 'clamp(14px, 1.6vh, 22px)',
-                  letterSpacing: '0.01em',
-                }}
-              >
-                {act.kicker}
-              </div>
+        <div className="reveal reveal-2" style={{ position: 'relative' }}>
+          {/* Connecting line */}
+          <div
+            style={{
+              position: 'absolute',
+              top: '12px',
+              left: '8%',
+              right: '8%',
+              height: '1px',
+              background:
+                'linear-gradient(90deg, transparent 0%, rgba(217, 171, 114, 0.6) 10%, rgba(217, 171, 114, 0.6) 90%, transparent 100%)',
+              zIndex: 0,
+            }}
+          />
 
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              columnGap: 'clamp(28px, 3vw, 56px)',
+              position: 'relative',
+              zIndex: 1,
+            }}
+          >
+            {acts.map((act) => (
               <div
+                key={act.num}
                 style={{
-                  fontFamily: 'var(--serif)',
-                  fontStyle: 'italic',
-                  fontWeight: 500,
-                  fontSize: 'clamp(40px, 4vw, 62px)',
-                  lineHeight: 1.0,
-                  letterSpacing: '-0.012em',
-                  color: 'rgba(232, 192, 130, 0.96)',
-                  marginBottom: 'clamp(28px, 3.4vh, 42px)',
-                  textShadow: '0 2px 18px rgba(0,0,0,0.45)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  textAlign: 'center',
                 }}
               >
-                {act.section}.
-              </div>
+                <div
+                  style={{
+                    width: '26px',
+                    height: '26px',
+                    borderRadius: '50%',
+                    border: '1.5px solid rgba(232, 192, 130, 0.85)',
+                    background: 'rgba(28, 18, 12, 0.55)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontFamily: 'var(--serif)',
+                    fontStyle: 'italic',
+                    fontSize: '11px',
+                    color: 'rgba(232, 192, 130, 0.95)',
+                    fontWeight: 500,
+                    marginBottom: 'clamp(28px, 3.4vh, 44px)',
+                  }}
+                >
+                  {act.num}
+                </div>
 
-              <div
-                style={{
-                  fontFamily: 'var(--serif)',
-                  fontWeight: 500,
-                  fontSize: 'clamp(18px, 1.5vw, 23px)',
-                  lineHeight: 1.45,
-                  color: 'rgba(252, 248, 236, 0.92)',
-                  textShadow: '0 2px 18px rgba(0,0,0,0.45)',
-                  maxWidth: '300px',
-                }}
-              >
-                {act.change}
+                <div
+                  style={{
+                    fontFamily: 'var(--serif)',
+                    fontStyle: 'italic',
+                    fontWeight: 500,
+                    fontSize: 'clamp(28px, 2.8vw, 44px)',
+                    lineHeight: 1.05,
+                    letterSpacing: '-0.008em',
+                    color: 'rgba(232, 192, 130, 0.96)',
+                    marginBottom: 'clamp(18px, 2.2vh, 28px)',
+                    textShadow: '0 2px 18px rgba(0,0,0,0.45)',
+                    maxWidth: '280px',
+                  }}
+                >
+                  {act.section}.
+                </div>
+
+                <div
+                  style={{
+                    fontFamily: 'var(--serif)',
+                    fontWeight: 500,
+                    fontSize: 'clamp(16px, 1.35vw, 21px)',
+                    lineHeight: 1.4,
+                    color: 'rgba(252, 248, 236, 0.85)',
+                    textShadow: '0 2px 18px rgba(0,0,0,0.45)',
+                    maxWidth: '260px',
+                  }}
+                >
+                  {act.change}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>
