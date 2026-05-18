@@ -2,7 +2,7 @@ export default function SlideContext_Foundation() {
   const calmSignals = [
     'The waiter who knew your allergies.',
     'The yacht, ready at the dock.',
-    'Your wine, already poured.',
+    'A note welcoming you back.',
   ]
   const chaos = [
     'Pilot got food poisoning.',
