@@ -1,17 +1,17 @@
 export default function Slide02_LensIntro() {
   const acts = [
     {
-      roman: 'I.',
+      kicker: 'First,',
       section: 'The Foundation',
       change: 'The business became more complex.',
     },
     {
-      roman: 'II.',
+      kicker: 'Then,',
       section: 'The Relationship',
       change: 'The client relationships became deeper.',
     },
     {
-      roman: 'III.',
+      kicker: 'Now,',
       section: 'The Path',
       change: 'Our horizon expanded.',
     },
@@ -76,17 +76,25 @@ export default function Slide02_LensIntro() {
           }}
         >
           {acts.map((act, i) => (
-            <div key={i}>
+            <div
+              key={i}
+              style={{
+                position: 'relative',
+                paddingLeft: 'clamp(22px, 2.4vw, 36px)',
+                borderLeft: '1px solid rgba(217, 171, 114, 0.45)',
+              }}
+            >
               <div
                 style={{
                   fontFamily: 'var(--serif)',
                   fontStyle: 'italic',
-                  fontSize: 'clamp(18px, 1.5vw, 24px)',
-                  color: 'rgba(217, 171, 114, 0.7)',
+                  fontSize: 'clamp(16px, 1.35vw, 22px)',
+                  color: 'rgba(217, 171, 114, 0.78)',
                   marginBottom: 'clamp(14px, 1.6vh, 22px)',
+                  letterSpacing: '0.01em',
                 }}
               >
-                {act.roman}
+                {act.kicker}
               </div>
 
               <div
@@ -94,11 +102,11 @@ export default function Slide02_LensIntro() {
                   fontFamily: 'var(--serif)',
                   fontStyle: 'italic',
                   fontWeight: 500,
-                  fontSize: 'clamp(36px, 3.6vw, 56px)',
+                  fontSize: 'clamp(40px, 4vw, 62px)',
                   lineHeight: 1.0,
-                  letterSpacing: '-0.01em',
+                  letterSpacing: '-0.012em',
                   color: 'rgba(232, 192, 130, 0.96)',
-                  marginBottom: 'clamp(22px, 2.6vh, 32px)',
+                  marginBottom: 'clamp(28px, 3.4vh, 42px)',
                   textShadow: '0 2px 18px rgba(0,0,0,0.45)',
                 }}
               >
@@ -107,21 +115,13 @@ export default function Slide02_LensIntro() {
 
               <div
                 style={{
-                  height: '1px',
-                  width: '56px',
-                  background: 'rgba(217, 171, 114, 0.5)',
-                  marginBottom: 'clamp(22px, 2.6vh, 32px)',
-                }}
-              />
-
-              <div
-                style={{
                   fontFamily: 'var(--serif)',
                   fontWeight: 500,
                   fontSize: 'clamp(18px, 1.5vw, 23px)',
-                  lineHeight: 1.4,
+                  lineHeight: 1.45,
                   color: 'rgba(252, 248, 236, 0.92)',
                   textShadow: '0 2px 18px rgba(0,0,0,0.45)',
+                  maxWidth: '300px',
                 }}
               >
                 {act.change}

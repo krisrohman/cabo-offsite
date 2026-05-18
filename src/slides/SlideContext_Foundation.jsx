@@ -8,8 +8,8 @@ export default function SlideContext_Foundation() {
     'Pilot got food poisoning.',
     'Car broke down on the way to pickup.',
     'Peanut allergy reconfirmed three times.',
-    'Yacht generator died at sunrise.',
-    'Resort lost the keys to your villa.',
+    'Three restaurants held your table.',
+    'Private chef caught the flu day-of.',
     'Sommelier ran out of your vintage.',
   ]
   return (
