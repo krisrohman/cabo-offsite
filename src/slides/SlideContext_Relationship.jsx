@@ -16,14 +16,16 @@ export default function SlideContext_Relationship() {
         style={{
           fontFamily: 'var(--serif)',
           fontWeight: 500,
-          fontSize: 'clamp(64px, 7.2vw, 112px)',
-          lineHeight: 0.98,
-          letterSpacing: '-0.015em',
+          fontSize: 'clamp(72px, 8.4vw, 140px)',
+          lineHeight: 0.95,
+          letterSpacing: '-0.02em',
           color: 'var(--teal-deep)',
-          marginBottom: 'clamp(24px, 3vh, 40px)',
+          marginBottom: 'clamp(20px, 2.4vh, 32px)',
+          textWrap: 'balance',
         }}
       >
-        Our clients are <em style={{ fontStyle: 'italic', color: 'var(--gold)', fontWeight: 500 }}>Known.</em>
+        Our clients are{' '}
+        <em style={{ fontStyle: 'italic', color: 'var(--gold)', fontWeight: 500 }}>Known.</em>
       </h2>
 
       <div
@@ -32,11 +34,10 @@ export default function SlideContext_Relationship() {
           fontFamily: 'var(--serif)',
           fontStyle: 'italic',
           fontWeight: 400,
-          fontSize: 'clamp(28px, 2.6vw, 44px)',
-          lineHeight: 1.25,
-          color: 'var(--gold)',
-          maxWidth: '900px',
-          marginBottom: 'clamp(48px, 6vh, 80px)',
+          fontSize: 'clamp(20px, 1.8vw, 30px)',
+          lineHeight: 1.3,
+          color: 'rgba(184, 130, 80, 0.78)',
+          marginBottom: 'clamp(80px, 11vh, 140px)',
         }}
       >
         By name. By preference. By history.
@@ -45,18 +46,16 @@ export default function SlideContext_Relationship() {
       <div
         className="reveal reveal-4"
         style={{
-          borderTop: '1px solid rgba(217, 171, 114, 0.32)',
-          paddingTop: 'clamp(24px, 3vh, 36px)',
-          maxWidth: '900px',
           fontFamily: 'var(--serif)',
-          fontWeight: 500,
-          fontSize: 'clamp(22px, 2vw, 32px)',
-          color: 'var(--teal-deep)',
-          lineHeight: 1.3,
+          fontStyle: 'italic',
+          fontSize: 'clamp(15px, 1.2vw, 19px)',
+          color: 'var(--ink-mute)',
+          letterSpacing: '0.02em',
+          maxWidth: '720px',
         }}
       >
-        Clients trust us with their most precious resource:{' '}
-        <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>Time.</em>
+        Trusted with their most precious resource:{' '}
+        <span style={{ color: 'var(--gold)', fontStyle: 'italic' }}>Time.</span>
       </div>
     </div>
   )

@@ -2,7 +2,7 @@ export default function SlideContext_WhatsAhead() {
   const stops = [
     { label: 'Private aviation', Icon: PlaneIcon },
     { label: 'Airport coordination', Icon: TowerIcon },
-    { label: 'WOW experiences', Icon: PartyHatIcon },
+    { label: 'WOW experiences', Icon: ChampagneIcon },
     { label: 'Complex itineraries', Icon: MapIcon },
     { label: 'Continuity across the trip', Icon: ThreadIcon },
   ]
@@ -167,30 +167,41 @@ function TowerIcon({ color }) {
   )
 }
 
-function PartyHatIcon({ color }) {
+function ChampagneIcon({ color }) {
   return (
     <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-      {/* Cone */}
+      {/* Flute bowl */}
       <path
-        d="M 24 6 L 38 40 L 10 40 Z"
+        d="M 19 6 L 29 6 L 27 26 Q 24 28 21 26 Z"
         stroke={color}
         strokeWidth="1.6"
         strokeLinejoin="round"
         fill={color}
-        fillOpacity="0.18"
+        fillOpacity="0.2"
       />
-      {/* Pom-pom at top */}
-      <circle cx="24" cy="5" r="2.8" fill={color} />
-      {/* Decorative stripe bands */}
-      <line x1="13" y1="33" x2="35" y2="33" stroke={color} strokeWidth="0.9" strokeOpacity="0.65" />
-      <line x1="17" y1="24" x2="31" y2="24" stroke={color} strokeWidth="0.7" strokeOpacity="0.55" />
-      {/* Confetti dots */}
-      <circle cx="4" cy="16" r="1.3" fill={color} opacity="0.7" />
-      <circle cx="44" cy="20" r="1.3" fill={color} opacity="0.7" />
-      <circle cx="3" cy="32" r="1.1" fill={color} opacity="0.55" />
-      <circle cx="45" cy="34" r="1.1" fill={color} opacity="0.55" />
-      {/* Brim line */}
-      <line x1="9" y1="40" x2="39" y2="40" stroke={color} strokeWidth="1.2" />
+      {/* Surface line in the bowl */}
+      <line x1="20" y1="12" x2="28" y2="12" stroke={color} strokeWidth="0.7" strokeOpacity="0.6" />
+      {/* Stem */}
+      <line x1="24" y1="28" x2="24" y2="40" stroke={color} strokeWidth="1.6" strokeLinecap="round" />
+      {/* Base */}
+      <line x1="17" y1="42" x2="31" y2="42" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
+      {/* Bubbles inside the flute */}
+      <circle cx="22" cy="20" r="1.1" fill={color} />
+      <circle cx="25" cy="16" r="1" fill={color} />
+      <circle cx="24" cy="23" r="0.8" fill={color} />
+      {/* Sparkle bursts around the flute */}
+      <g stroke={color} strokeWidth="1.2" strokeLinecap="round">
+        <line x1="6" y1="10" x2="10" y2="10" />
+        <line x1="8" y1="8" x2="8" y2="12" />
+      </g>
+      <g stroke={color} strokeWidth="1.2" strokeLinecap="round">
+        <line x1="38" y1="14" x2="42" y2="14" />
+        <line x1="40" y1="12" x2="40" y2="16" />
+      </g>
+      <g stroke={color} strokeWidth="1" strokeLinecap="round" opacity="0.65">
+        <line x1="4" y1="30" x2="7" y2="30" />
+        <line x1="5.5" y1="28.5" x2="5.5" y2="31.5" />
+      </g>
     </svg>
   )
 }

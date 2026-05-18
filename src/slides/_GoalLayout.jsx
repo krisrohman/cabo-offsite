@@ -150,18 +150,6 @@ export default function GoalLayout({
             </div>
           </div>
 
-          <div
-            className="reveal reveal-4"
-            style={{
-              fontFamily: 'var(--serif)',
-              fontSize: 'clamp(16px, 1.3vw, 21px)',
-              color: 'var(--ink-soft)',
-              lineHeight: 1.55,
-              maxWidth: '500px',
-            }}
-          >
-            {description}
-          </div>
         </div>
 
         <div
